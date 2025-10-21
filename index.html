@@ -17,7 +17,7 @@
     h1, h2, h3 { text-shadow: 0 2px 8px rgba(0,0,0,.8); -webkit-text-stroke: 1px rgba(0,0,0,.75); }
   </style>
 </head>
-<body class="bg-gray-950 text-gray-100">
+<body class="bg-gray-50 text-gray-900">
   <!-- HEADER -->
   <header class="sticky top-0 z-40 border-b border-white/10 bg-gray-950/80 backdrop-blur">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -30,31 +30,45 @@
       </nav>
       <a href="#order" class="inline-flex items-center gap-2 rounded-2xl bg-white text-gray-900 px-4 py-2 text-sm font-semibold shadow hover:opacity-90">Comandă acum</a>
     </div>
-  </header>  <!-- HERO cu slideshow de imagini luminoase -->  <section id="top" class="relative overflow-hidden">
-    <div id="slideshow" class="absolute inset-0 -z-10 w-full h-full"></div>
-    <script>
-      const imgs = [
-        'https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg',
-        'https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg',
-        'https://images.pexels.com/photos/36029/lake-morning-dawn-nature.jpg'
-      ];
-      let i=0;
-      const slide = document.getElementById('slideshow');
-      function change(){ slide.style.background=`url(${imgs[i]}) center/cover no-repeat`; i=(i+1)%imgs.length; }
-      change(); setInterval(change,20000);
-    </script>
-    <div class="absolute inset-0 bg-white/30 -z-10"></div>
-    <div class="container mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900">Melodii la comandă<br><span class="text-violet-600">100% personalizate</span></h1>
-        <p class="mt-4 text-lg text-gray-800">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#order" class="rounded-2xl bg-violet-600 text-white px-6 py-3 font-semibold shadow hover:opacity-90">Comandă acum</a>
-          <a href="#samples" class="rounded-2xl border border-gray-300 px-6 py-3 font-semibold hover:bg-white/50 text-gray-800">Ascultă mostre</a>
-        </div>
-        <div class="mt-6 text-sm text-gray-700">Livrare de la 48h · Revizii incluse · MP3/WAV + versuri + copertă</div>
-      </div>
+  </header>  <!-- HERO cu slideshow de imagini luminoase (fără video) -->  <section id="top" class="relative overflow-hidden min-h-[70vh]">
+    <style>
+      #slideshow { position:absolute; inset:0; z-index:-2; }
+      #slideshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
+      #slideshow .slide.active { opacity:1; }
+      /* ușor mai luminoase + calde */
+      #hero-overlay { position:absolute; inset:0; z-index:-1; background: linear-gradient(to bottom, rgba(255,255,255,.65), rgba(255,255,255,.45)); }
+    </style><div id="slideshow">
+  <div class="slide active" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+  <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+</div>
+<div id="hero-overlay"></div>
+
+<div class="container mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-8 items-center">
+  <div>
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Melodii la comandă<br><span class="text-violet-700">100% personalizate</span></h1>
+    <p class="mt-4 text-lg text-gray-800">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#order" class="rounded-2xl bg-violet-600 text-white px-6 py-3 font-semibold shadow hover:opacity-90">Comandă acum</a>
+      <a href="#samples" class="rounded-2xl border border-gray-300 px-6 py-3 font-semibold hover:bg-white/60 text-gray-900">Ascultă mostre</a>
     </div>
+    <div class="mt-6 text-sm text-gray-700">Livrare de la 48h · Revizii incluse · MP3/WAV + versuri + copertă</div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const slides = Array.from(document.querySelectorAll('#slideshow .slide'));
+    let idx = 0;
+    setInterval(()=>{
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 20000); // schimbă imaginea la 20s
+  })();
+</script>
+
   </section>  <!-- ORDER FORM + PLĂȚI -->  <section id="order" class="py-16 md:py-20 border-t border-white/10">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <!-- Formular -->
