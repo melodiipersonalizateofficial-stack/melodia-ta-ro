@@ -54,9 +54,11 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>  <!-- HEADER -->  <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="text-xl font-extrabold tracking-tight">🎵 Melodia Ta</a>
-      hidden md:flex items-center gap-6 text-sm
-        <a href="#samples" class="hover:opacity-70">Mostre</a>
+      <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+        🎵 <span>Melodia Ta</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#order" class="hover:opacity-70">Comandă</a>
         <a href="#pricing" class="hover:opacity-70">Prețuri</a>
         <a href="#contact" class="hover:opacity-70">Contact</a>
       </nav>
