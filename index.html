@@ -10,41 +10,49 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --scrim: rgba(255,255,255,.22);   /* lumină peste imagini (mai mic = se văd mai bine) */
-      --card: rgba(255,255,255,.88);    /* fundal carduri */
-      --blur: 12px;                     /* blur pentru efect "glass" */
-      --shadow: 0 20px 60px rgba(0,0,0,.25);
+      --panel-bg: rgba(255,255,255,.6);  /* panouri mult mai luminoase */
+      --panel-brd: rgba(0,0,0,.08);
+      --scrim: rgba(255,255,255,.05);    /* overlay ușor – imagini vizibile */
+      --text-stroke: 1px rgba(255,255,255,.35);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }/* === BACKGROUND CINEMATIC FULL-PAGE === */
-#bg{position:fixed; inset:0; z-index:-2; overflow:hidden;}
-#bg img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:contrast(1.05) saturate(1.05); opacity:0; transition:opacity 1200ms ease;}
-#bg img.active{opacity:1;}
-#scrim{position:fixed; inset:0; background:linear-gradient(180deg,var(--scrim), rgba(255,255,255,.12) 40%, var(--scrim)); z-index:-1;}
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
+    .container { max-width: 1120px; }/* ===== Slideshow pe TOT site-ul ===== */
+#bgshow { position:fixed; inset:0; z-index:-2; }
+#bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
+#bgshow .slide.active { opacity:1; }
+#bg-scrim { position:fixed; inset:0; z-index:-1; background: var(--scrim); backdrop-filter: saturate(120%) blur(1px); }
 
-/* === LAYOUT === */
-.container{max-width:1140px}
-.card{background:var(--card); backdrop-filter:blur(var(--blur)); border:1px solid rgba(0,0,0,.06); border-radius:24px; box-shadow:var(--shadow)}
-h1,h2,h3{ text-shadow:0 2px 14px rgba(255,255,255,.6), 0 3px 18px rgba(0,0,0,.18)}
-.btn{border-radius:16px; font-weight:700}
-.btn-primary{background:#6d28d9; color:#fff}
-.btn-outline{border:1px solid rgba(0,0,0,.12)}
+/* panouri citibile peste poze */
+.panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,.12); backdrop-filter: blur(6px); }
 
-header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); background:rgba(255,255,255,.6)}
+/* heading cu subtil stroke pentru contrast pe imagini luminoase */
+h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgba(255,255,255,.25); }
+
+/* header luminos plutitor */
+.hdr { background: rgba(255,255,255,.75); backdrop-filter: blur(8px); border-bottom: 1px solid var(--panel-brd); }
+
+/* butoane */
+.btn { border-radius: 16px; padding: 12px 18px; font-weight:600; display:inline-flex; align-items:center; gap:.5rem; }
+.btn-primary { background:#6d28d9; color:white; box-shadow: 0 8px 20px rgba(109,40,217,.25); }
+.btn-primary:hover { opacity:.95; }
+.btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
+
+/* câmpuri form */
+.field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
 
   </style>
 </head>
 <body>
-  <!-- BACKGROUND SLIDESHOW (imagini luminoase) -->
-  <div id="bg" aria-hidden="true">
-    <img class="active" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1920&auto=format&fit=crop" alt="clape colorate"/>
-    <img src="https://images.unsplash.com/photo-1511379938547-9a5f4d4e9e8b?q=80&w=1920&auto=format&fit=crop" alt="mixer dj"/>
-    <img src="https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1920&auto=format&fit=crop" alt="chitara lumină"/>
-    <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1920&auto=format&fit=crop" alt="microfon scenă"/>
-    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1920&auto=format&fit=crop" alt="sala lumini"/>
-    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1920&auto=format&fit=crop" alt="pads neon"/>
+  <!-- SLIDESHOW GLOBAL (imagini foarte luminoase) -->
+  <div id="bgshow" aria-hidden="true">
+    <div class="slide active" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
   </div>
-  <div id="scrim" aria-hidden="true"></div>  <!-- HEADER -->  <header class="nav border-b border-white/0">
+  <div id="bg-scrim" aria-hidden="true"></div>  <!-- HEADER -->  <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight">🎵 Melodia Ta</a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
@@ -52,67 +60,67 @@ header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); backgr
         <a href="#pricing" class="hover:opacity-70">Prețuri</a>
         <a href="#contact" class="hover:opacity-70">Contact</a>
       </nav>
-      <a href="#order" class="btn btn-primary px-4 py-2 shadow">Comandă acum</a>
+      <a href="#order" class="btn btn-primary">Comandă acum</a>
     </div>
-  </header>  <!-- HERO -->  <section id="top" class="min-h-[72vh] flex items-center">
-    <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-      <div class="card p-8">
+  </header>  <!-- HERO -->  <section id="top" class="py-14 md:py-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-8 md:p-10">
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Melodii la comandă<br><span class="text-violet-700">100% personalizate</span></h1>
-        <p class="mt-4 text-lg text-slate-800">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#order" class="btn btn-primary px-6 py-3">Comandă acum</a>
-          <a href="#pricing" class="btn btn-outline px-6 py-3 bg-white/60">Vezi prețuri</a>
+        <p class="mt-4 text-lg text-slate-700">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#order" class="btn btn-primary">Comandă acum</a>
+          <a href="#pricing" class="btn btn-ghost">Vezi prețurile</a>
         </div>
-        <div class="mt-3 text-sm text-slate-700">Livrare de la 48h · Revizii incluse · MP3/WAV + versuri + copertă</div>
+        <div class="mt-6 text-sm text-slate-600">Livrare de la 48h · Revizii incluse · MP3/WAV + versuri + copertă</div>
       </div>
     </div>
-  </section>  <!-- ORDER FORM + PLĂȚI -->  <section id="order" class="py-16 md:py-20">
+  </section>  <!-- ORDER + PLĂȚI -->  <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
-      <!-- Formular -->
-      <div class="card p-6">
+      <div class="panel p-6 md:p-8">
         <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
-        <p class="text-slate-600 text-sm mt-1">Completează 4 câmpuri. După trimitere poți plăti cu Card / PayPal / Revolut.</p>
-        <form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
-          <input type="hidden" name="site" value="RO" />
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Nume complet*</span>
-            <input required name="nume_complet" class="rounded-xl bg-white/70 border border-black/10 px-4 py-3" placeholder="Ex: Andrei Popescu" />
-          </label>
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Adresă email*</span>
-            <input required type="email" name="email_client" class="rounded-xl bg-white/70 border border-black/10 px-4 py-3" placeholder="adresa@exemplu.ro" />
-          </label>
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Gen muzical dorit*</span>
-            <select required name="gen" class="rounded-xl bg-white/70 border border-black/10 px-4 py-3">
-              <option value="">Alege genul</option>
-              <option>Pop</option><option>Manea modernă</option><option>Trap</option><option>Baladă</option><option>Folk</option><option>Ambient/Meditație</option>
-            </select>
-          </label>
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Povestea ta / instrucțiuni*</span>
-            <textarea required name="mesaj" rows="5" class="rounded-xl bg-white/70 border border-black/10 px-4 py-3" placeholder="Pentru cine e melodia, ocazie, vibe, inside jokes, cuvinte cheie…"></textarea>
-          </label>
-          <label class="inline-flex items-start gap-3 text-sm text-slate-700">
-            <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
-            Sunt de acord ca datele mele să fie folosite pentru a crea melodia (GDPR).
-          </label>
-          <div class="flex flex-wrap gap-3 items-center">
-            <button type="submit" class="btn btn-primary px-6 py-3">Trimite comanda</button>
-            <div id="ro-status" class="text-sm text-slate-700 hidden">Se trimit detaliile…</div>
-          </div>
-        </form>
-        <div id="ro-payment" class="mt-6">
-          <div class="text-sm text-slate-700 mb-2">Pasul 2: Alege metoda de plată</div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <a href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="flex items-center justify-center gap-2 btn btn-outline bg-white/80 px-4 py-3">💳 Card (Stripe)</a>
-            <a href="https://paypal.me/Serviciidigitale" target="_blank" class="flex items-center justify-center gap-2 btn btn-outline bg-white/80 px-4 py-3">🅿️ PayPal</a>
-            <a href="https://revolut.me/razvan3ltl" target="_blank" class="flex items-center justify-center gap-2 btn btn-outline bg-white/80 px-4 py-3">💠 Revolut</a>
-          </div>
-          <p class="text-xs text-slate-600 mt-3">Plată sigură. Linkul Stripe este în mod test. Când ai link LIVE, înlocuiește-l și e gata.</p>
-        </div>
-      </div><!-- Info lateral -->
-  <div class="card p-6">
+        <p class="text-slate-600 text-sm mt-1">Completează 4 câmpuri. După trimitere poți plăti cu Card / PayPal / Revolut.</p><form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
+      <input type="hidden" name="site" value="RO" />
+      <label class="grid gap-1">
+        <span class="text-sm text-slate-700">Nume complet*</span>
+        <input required name="nume_complet" class="field" placeholder="Ex: Andrei Popescu" />
+      </label>
+      <label class="grid gap-1">
+        <span class="text-sm text-slate-700">Adresă email*</span>
+        <input required type="email" name="email_client" class="field" placeholder="adresa@exemplu.ro" />
+      </label>
+      <label class="grid gap-1">
+        <span class="text-sm text-slate-700">Gen muzical dorit*</span>
+        <select required name="gen" class="field">
+          <option value="">Alege genul</option>
+          <option>Pop</option><option>Manea modernă</option><option>Trap</option><option>Baladă</option><option>Folk</option><option>Ambient/Meditație</option>
+        </select>
+      </label>
+      <label class="grid gap-1">
+        <span class="text-sm text-slate-700">Povestea ta / instrucțiuni*</span>
+        <textarea required name="mesaj" rows="5" class="field" placeholder="Pentru cine e melodia, ocazie, vibe, inside jokes, cuvinte cheie…"></textarea>
+      </label>
+      <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+        <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
+        Sunt de acord ca datele mele să fie folosite pentru a crea melodia (GDPR).
+      </label>
+      <div class="flex flex-wrap gap-3 items-center">
+        <button type="submit" class="btn btn-primary">Trimite comanda</button>
+        <div id="ro-status" class="text-sm text-slate-600 hidden">Se trimit detaliile…</div>
+      </div>
+    </form>
+
+    <div id="ro-payment" class="mt-6">
+      <div class="text-sm text-slate-700 mb-2">Pasul 2: Alege metoda de plată</div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <a href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
+        <a href="https://paypal.me/Serviciidigitale" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
+        <a href="https://revolut.me/razvan3ltl" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">Plată sigură. Linkul Stripe este în mod test. Când ai link LIVE, înlocuiește-l și e gata.</p>
+    </div>
+  </div>
+
+  <div class="panel p-6 md:p-8">
     <h3 class="text-2xl font-extrabold">Ce primești</h3>
     <ul class="mt-4 space-y-2 text-sm text-slate-700">
       <li>• MP3 320kbps + WAV 24-bit</li>
@@ -121,28 +129,28 @@ header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); backgr
       <li>• Licență personală (comercială opțional)</li>
     </ul>
     <div class="mt-6">
-      <div class="text-sm text-slate-700">Email</div>
+      <div class="text-sm text-slate-600">Email</div>
       <a class="font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a>
     </div>
     <div class="mt-4">
-      <div class="text-sm text-slate-700">WhatsApp</div>
+      <div class="text-sm text-slate-600">WhatsApp</div>
       <a class="font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a>
     </div>
   </div>
 </div>
 
-  </section>  <!-- PREȚURI (RO) -->  <section id="pricing" class="py-16 md:py-20">
+  </section>  <!-- PREȚURI -->  <section id="pricing" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
-      <div class="card p-8">
+      <div class="panel p-6 md:p-10">
         <h2 class="text-3xl md:text-4xl font-extrabold">Prețuri — România</h2>
         <p class="text-slate-700 text-sm mt-2">Preț de bază <b>100 lei</b> / melodie + opțiuni (express, comercial, exclusivitate).</p>
         <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="rounded-3xl border border-black/10 p-6 bg-white/90">
+          <div class="panel p-6">
             <div class="text-sm uppercase tracking-wider text-slate-600">Bază</div>
             <div class="mt-2 text-3xl font-extrabold">100 lei</div>
             <p class="mt-2 text-slate-700">Melodie personalizată ~60–120 sec. 1 revizie. Livrare 3–5 zile.</p>
           </div>
-          <div class="rounded-3xl border-2 border-violet-400 p-6 bg-violet-50">
+          <div class="panel p-6 border-2 border-violet-300 bg-white/85">
             <div class="text-sm uppercase tracking-wider text-violet-700">Opțiuni populare</div>
             <ul class="mt-4 space-y-2 text-sm text-slate-800">
               <li>• Express 48h (+50 lei)</li>
@@ -152,7 +160,7 @@ header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); backgr
               <li>• Exclusivitate (+300 lei)</li>
             </ul>
           </div>
-          <div class="rounded-3xl border border-black/10 p-6 bg-white/90">
+          <div class="panel p-6">
             <div class="text-sm uppercase tracking-wider text-slate-600">Complet</div>
             <div class="mt-2 text-3xl font-extrabold">100 lei + opțiuni</div>
             <p class="mt-2 text-slate-700">2–3 minute, versuri complete, 2 revizii. Posibil stems la cerere.</p>
@@ -160,32 +168,32 @@ header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); backgr
         </div>
       </div>
     </div>
-  </section>  <!-- CONTACT -->  <section id="contact" class="py-16 md:py-20">
+  </section>  <!-- CONTACT -->  <section id="contact" class="pb-20">
     <div class="container mx-auto px-4">
-      <div class="card p-8">
+      <div class="panel p-6 md:p-10">
         <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
         <div class="mt-6 grid md:grid-cols-3 gap-6">
-          <div class="rounded-2xl border border-black/10 p-6 bg-white/90"><div class="text-sm text-slate-700">Email</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
-          <div class="rounded-2xl border border-black/10 p-6 bg-white/90"><div class="text-sm text-slate-700">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
-          <div class="rounded-2xl border border-black/10 p-6 bg-white/90"><div class="text-sm text-slate-700">Brief public</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://tally.so/r/EXEMPLU_BRIEF">Deschide formularul</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">Email</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">Brief public</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://tally.so/r/EXEMPLU_BRIEF">Deschide formularul</a></div>
         </div>
       </div>
     </div>
-  </section>  <!-- FOOTER -->  <footer class="">
-    <div class="container mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-sm text-slate-700 card">
+  </section>  <!-- FOOTER -->  <footer class="hdr border-t">
+    <div class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm text-slate-700">
       <div>
-        <div class="font-semibold text-slate-800">🎵 Melodia Ta</div>
+        <div class="font-semibold text-slate-900">🎵 Melodia Ta</div>
         <p class="mt-2">Comandă melodii personalizate pentru orice ocazie. Livrare rapidă, plăți sigure.</p>
       </div>
       <div>
-        <div class="font-semibold text-slate-800">Legal</div>
+        <div class="font-semibold text-slate-900">Legal</div>
         <ul class="mt-2 space-y-2">
           <li><a href="#" class="hover:underline">Termeni & Condiții</a></li>
           <li><a href="#" class="hover:underline">Politica de confidențialitate</a></li>
         </ul>
       </div>
       <div>
-        <div class="font-semibold text-slate-800">Social</div>
+        <div class="font-semibold text-slate-900">Social</div>
         <ul class="mt-2 space-y-2">
           <li><a href="#" class="hover:underline">YouTube</a></li>
           <li><a href="#" class="hover:underline">TikTok</a></li>
@@ -193,23 +201,23 @@ header.nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px); backgr
         </ul>
       </div>
     </div>
-    <div class="text-center text-xs text-slate-700 py-6">© <span id="year"></span> Melodia Ta. Toate drepturile rezervate.</div>
+    <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Ta. Toate drepturile rezervate.</div>
   </footer>  <script>
-    // an calendar year
+    // anul curent
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // slideshow
+    // slideshow imagini – schimbă la 20s
     (function(){
-      const imgs = Array.from(document.querySelectorAll('#bg img'));
+      const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
       let i = 0;
       setInterval(()=>{
-        imgs[i].classList.remove('active');
-        i = (i+1) % imgs.length;
-        imgs[i].classList.add('active');
-      }, 20000); // 20s
+        slides[i].classList.remove('active');
+        i = (i+1) % slides.length;
+        slides[i].classList.add('active');
+      }, 20000);
     })();
 
-    // form + show payments
+    // submit form → afișează zona de plată
     (function(){
       const form = document.getElementById('form-ro');
       const status = document.getElementById('ro-status');
