@@ -17,9 +17,26 @@
     h1, h2, h3 { text-shadow: 0 2px 8px rgba(0,0,0,.8); -webkit-text-stroke: 1px rgba(0,0,0,.75); }
   </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="text-gray-900">
+  <!-- GLOBAL BACKGROUND SLIDESHOW (luminos, pe TOT site-ul) -->
+  <style>
+    #bgshow{position:fixed;inset:0;z-index:-10}
+    #bgshow .slide{position:absolute;inset:0;background-position:center;background-size:cover;opacity:0;transition:opacity 1.2s ease}
+    #bgshow .slide.active{opacity:1}
+    /* strat alb translucid ca totul sa ramana lizibil */
+    #bgfade{position:fixed;inset:0;z-index:-9;background:linear-gradient(to bottom,rgba(255,255,255,.78),rgba(255,255,255,.72))}
+    /* panouri luminoase pentru sectiuni */
+    .panel{background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border:1px solid rgba(0,0,0,.06);border-radius:1.5rem}
+  </style>
+  <div id="bgshow">
+    <div class="slide active" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+  </div>
+  <div id="bgfade"></div>
   <!-- HEADER -->
-  <header class="sticky top-0 z-40 border-b border-white/10 bg-gray-950/80 backdrop-blur">
+  <header class="sticky top-0 z-40 border-b border-gray-200 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight">🎵 Melodia Ta</a>
       <nav class="hidden md:flex items-center gap-6 text-sm">
@@ -72,7 +89,7 @@
   </section>  <!-- ORDER FORM + PLĂȚI -->  <section id="order" class="py-16 md:py-20 border-t border-white/10">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <!-- Formular -->
-      <div class="glass rounded-3xl p-6 border border-white/10">
+      <div class="panel rounded-3xl p-6 border border-white/10">
         <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
         <p class="text-gray-400 text-sm mt-1">Completează 4 câmpuri. După trimitere poți plăti cu Card / PayPal / Revolut.</p><form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
       <input type="hidden" name="site" value="RO" />
@@ -118,7 +135,7 @@
   </div>
 
   <!-- Info lateral -->
-  <div class="glass rounded-3xl p-6 border border-white/10">
+  <div class="panel rounded-3xl p-6 border border-white/10">
     <h3 class="text-2xl font-extrabold">Ce primești</h3>
     <ul class="mt-4 space-y-2 text-sm text-gray-300">
       <li>• MP3 320kbps + WAV 24-bit</li>
@@ -197,6 +214,13 @@
     </div>
     <div class="text-center text-xs text-gray-500 pb-10">© <span id="year"></span> Melodia Ta. Toate drepturile rezervate.</div>
   </footer>  <script>
+    // slideshow global (schimbare imagine la 20s)
+    (function(){
+      const slides=[...document.querySelectorAll('#bgshow .slide')];
+      let i=0; setInterval(()=>{slides[i].classList.remove('active'); i=(i+1)%slides.length; slides[i].classList.add('active');},20000);
+    })();
+
+
     document.getElementById('year').textContent = new Date().getFullYear();
     // Trimite la Formspree + arată plățile
     (function(){
