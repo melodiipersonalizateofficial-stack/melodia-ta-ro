@@ -10,9 +10,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root{
-      --panel-bg: rgba(255,255,255,.6);  /* panouri mult mai luminoase */
-      --panel-brd: rgba(0,0,0,.08);
-      --scrim: rgba(255,255,255,.05);    /* overlay ușor – imagini vizibile */
+      --panel-bg: rgba(255,255,255,.42);  /* și mai transparent pentru poze vizibile */  /* panouri mult mai luminoase */
+      --panel-brd: rgba(0,0,0,.06);
+      --scrim: rgba(255,255,255,.02);   /* mai puțin alb lăptos peste imagini */    /* overlay ușor – imagini vizibile */
       --text-stroke: 1px rgba(255,255,255,.35);
     }
     html { scroll-behavior: smooth; }
@@ -24,7 +24,7 @@
 #bg-scrim { position:fixed; inset:0; z-index:-1; background: var(--scrim); backdrop-filter: saturate(120%) blur(1px); }
 
 /* panouri citibile peste poze */
-.panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,.12); backdrop-filter: blur(6px); }
+.panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.10); backdrop-filter: blur(4px); }
 
 /* heading cu subtil stroke pentru contrast pe imagini luminoase */
 h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgba(255,255,255,.25); }
@@ -55,8 +55,8 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
   <div id="bg-scrim" aria-hidden="true"></div>  <!-- HEADER -->  <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight">🎵 Melodia Ta</a>
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#order" class="hover:opacity-70">Comandă</a>
+      $1hidden md:flex items-center gap-6 text-sm$2
+        <a href="#samples" class="hover:opacity-70">Mostre</a>
         <a href="#pricing" class="hover:opacity-70">Prețuri</a>
         <a href="#contact" class="hover:opacity-70">Contact</a>
       </nav>
@@ -72,9 +72,61 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
           <a href="#pricing" class="btn btn-ghost">Vezi prețurile</a>
         </div>
         <div class="mt-6 text-sm text-slate-600">Livrare de la 48h · Revizii incluse · MP3/WAV + versuri + copertă</div>
+          <article class="panel overflow-hidden">
+      <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/995301/pexels-photo-995301.jpeg?auto=compress');"></div>
+      <div class="p-5">
+        <h3 class="text-lg font-bold">Dragoste eternă – cinematic romantic</h3>
+        <div class="mt-3 flex items-center gap-3">
+          <button class="btn btn-primary play" data-target="#aud4">▶︎ Ascultă</button>
+          <span class="text-sm text-slate-600">~3:10</span>
+        </div>
+        <audio id="aud4" preload="none" class="w-full mt-3">
+          <source src="https://docs.google.com/uc?export=download&id=1jICC4OyadkU7x_hWcSg1Ygb5Q3eTha_k" type="audio/mpeg" />
+        </audio>
       </div>
-    </div>
-  </section>  <!-- ORDER + PLĂȚI -->  <section id="order" class="pb-16 md:pb-20">
+    </article>
+    <article class="panel overflow-hidden">
+      <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress');"></div>
+      <div class="p-5">
+        <h3 class="text-lg font-bold">Liniște și speranță – spiritual calm</h3>
+        <div class="mt-3 flex items-center gap-3">
+          <button class="btn btn-primary play" data-target="#aud5">▶︎ Ascultă</button>
+          <span class="text-sm text-slate-600">~3:05</span>
+        </div>
+        <audio id="aud5" preload="none" class="w-full mt-3">
+          <source src="https://docs.google.com/uc?export=download&id=1_4QhZWvr1vEzAz2Aa4xMTUD69O_-mU7a" type="audio/mpeg" />
+        </audio>
+      </div>
+    </article>
+    <article class="panel overflow-hidden">
+      <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg?auto=compress');"></div>
+      <div class="p-5">
+        <h3 class="text-lg font-bold">Zâmbet de copil – cald emoționant</h3>
+        <div class="mt-3 flex items-center gap-3">
+          <button class="btn btn-primary play" data-target="#aud6">▶︎ Ascultă</button>
+          <span class="text-sm text-slate-600">~2:55</span>
+        </div>
+        <audio id="aud6" preload="none" class="w-full mt-3">
+          <source src="https://docs.google.com/uc?export=download&id=1G114vaMpPVW4KFTdR69qGckL8HmqWoh6" type="audio/mpeg" />
+        </audio>
+      </div>
+    </article>
+    <article class="panel overflow-hidden">
+      <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress');"></div>
+      <div class="p-5">
+        <h3 class="text-lg font-bold">Forța din tine – puternic motivațional</h3>
+        <div class="mt-3 flex items-center gap-3">
+          <button class="btn btn-primary play" data-target="#aud7">▶︎ Ascultă</button>
+          <span class="text-sm text-slate-600">~3:15</span>
+        </div>
+        <audio id="aud7" preload="none" class="w-full mt-3">
+          <source src="https://docs.google.com/uc?export=download&id=1j9PurzItj2IIQghNnVhk4i3n-lwtXZHt" type="audio/mpeg" />
+        </audio>
+      </div>
+    </article>
+  </div>
+</div>
+</section>  <!-- ORDER + PLĂȚI -->  <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <div class="panel p-6 md:p-8">
         <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
@@ -136,6 +188,166 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
       <div class="text-sm text-slate-600">WhatsApp</div>
       <a class="font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a>
     </div>
+  </div>
+</div>
+
+  </section>  <!-- MONSTRE AUDIO --><section id="samples" class="pb-16 md:pb-20">
+  <div class="container mx-auto px-4">
+    <div class="panel p-6 md:p-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <article class="panel overflow-hidden">
+    <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress');"></div>
+    <div class="p-5">
+      <h3 class="text-lg font-bold">Titlu 1 – romantic</h3>
+      <div class="mt-3 flex items-center gap-3">
+        <button class="btn btn-primary play" data-target="#aud1">▶︎ Ascultă</button>
+        <span class="text-sm text-slate-600">~3:00</span>
+      </div>
+      <audio id="aud1" preload="none" class="w-full mt-3">
+        <source src="https://docs.google.com/uc?export=download&id=1-IxjjYHBRc9e0Bz4wvyo5phZ938KF_u6" type="audio/mpeg" />
+      </audio>
+    </div>
+  </article>
+  <article class="panel overflow-hidden">
+    <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress');"></div>
+    <div class="p-5">
+      <h3 class="text-lg font-bold">Titlu 2 – manea modernă</h3>
+      <div class="mt-3 flex items-center gap-3">
+        <button class="btn btn-primary play" data-target="#aud2">▶︎ Ascultă</button>
+        <span class="text-sm text-slate-600">~2:45</span>
+      </div>
+      <audio id="aud2" preload="none" class="w-full mt-3">
+        <source src="https://docs.google.com/uc?export=download&id=15h-CEN3z3wOkuWURJ-FQAGKnb0UIUfIM" type="audio/mpeg" />
+      </audio>
+    </div>
+  </article>
+  <article class="panel overflow-hidden">
+    <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress');"></div>
+    <div class="p-5">
+      <h3 class="text-lg font-bold">Titlu 3 – baladă emoțională</h3>
+      <div class="mt-3 flex items-center gap-3">
+        <button class="btn btn-primary play" data-target="#aud3">▶︎ Ascultă</button>
+        <span class="text-sm text-slate-600">~3:20</span>
+      </div>
+      <audio id="aud3" preload="none" class="w-full mt-3">
+        <source src="https://docs.google.com/uc?export=download&id=1R2Yym98QdDqFMJfMm_iP-2rMggk2tRYQ" type="audio/mpeg" />
+      </audio>
+    </div>
+  </article>
+</div>
+    </div>
+  </div>
+</section>
+  <!-- MOSTRE AUDIO (carduri) -->
+  <section id="samples" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Ascultă mostre</h2>
+          <a href="#order" class="btn btn-primary">Comandă o melodie</a>
+        </div>
+        <p class="mt-2 text-slate-700">Carduri cu titlu + copertă + buton play. Înlocuiește sursele <code>src</code> cu linkurile tale directe (.mp3/.wav). Dacă folosești Google Drive, transformă linkul cu formatul: <code>https://drive.google.com/uc?export=download&id=IDUL</code>.</p><div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #1</div>
+          <h3 class="text-lg font-bold">Baladă emoțională</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud1">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~3:20</span>
+          </div>
+          <audio id="aud1" preload="none" class="w-full mt-3">
+            <!-- Exemplu src (schimbă cu al tău) -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #2</div>
+          <h3 class="text-lg font-bold">Manea modernă</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud2">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~2:40</span>
+          </div>
+          <audio id="aud2" preload="none" class="w-full mt-3">
+            <source src="https://samplelib.com/lib/preview/mp3/sample-6s.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #3</div>
+          <h3 class="text-lg font-bold">Pop modern</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud3">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~3:00</span>
+          </div>
+          <audio id="aud3" preload="none" class="w-full mt-3">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #4</div>
+          <h3 class="text-lg font-bold">Ambient / Meditație</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud4">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~2:30</span>
+          </div>
+          <audio id="aud4" preload="none" class="w-full mt-3">
+            <source src="https://samplelib.com/lib/preview/mp3/sample-12s.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/995301/pexels-photo-995301.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #5</div>
+          <h3 class="text-lg font-bold">Baladă cinematică</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud5">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~3:10</span>
+          </div>
+          <audio id="aud5" preload="none" class="w-full mt-3">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="panel overflow-hidden">
+        <div class="aspect-video bg-center bg-cover" style="background-image:url('https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&w=1200');"></div>
+        <div class="p-5">
+          <div class="text-xs uppercase tracking-wider text-slate-600">Demo #6</div>
+          <h3 class="text-lg font-bold">Trap / Vibe</h3>
+          <div class="mt-3 flex items-center gap-3">
+            <button class="btn btn-primary play" data-target="#aud6">▶︎ Ascultă</button>
+            <span class="text-sm text-slate-600">~2:50</span>
+          </div>
+          <audio id="aud6" preload="none" class="w-full mt-3">
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+      </article>
+    </div>
+
+    <p class="mt-6 text-sm text-slate-600">Notă: dacă un link nu pornește, verifică să fie direct către fișier .mp3/.wav (nu pagină). Pentru Google Drive, apasă
+      <em>Partajați → Oricine are linkul → Copiați linkul</em>, apoi înlocuiește <code>/file/d/ID/view</code> cu <code>/uc?export=download&id=ID</code>.</p>
   </div>
 </div>
 
@@ -238,5 +450,17 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
         } catch(err){ status.textContent = 'Eroare de rețea. Încearcă din nou.'; }
       });
     })();
+  </script>  <script>
+    // play/pause unic: când pornește un card, oprește restul
+    document.querySelectorAll('.play').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const audio = document.querySelector(btn.dataset.target);
+        if(!audio) return;
+        // oprește altele
+        document.querySelectorAll('audio').forEach(a=>{ if(a!==audio){ a.pause(); }});
+        // pornește / pune pauză
+        if(audio.paused){ audio.play(); } else { audio.pause(); }
+      });
+    });
   </script></body>
-</html>
+  </html>
