@@ -354,7 +354,91 @@ h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgb
 </div>
 
   </section>
-<section id="mostre" class="pb-16 md:pb-20"><div class="container mx-auto px-4"><div class="panel p-6 md:p-10"><h2 class="text-3xl font-extrabold">Mostre audio</h2><ul class="mt-4 space-y-6"><li><p>1. Pentru Raluca – romantic profund</p><audio controls src="https://docs.google.com/uc?export=download&id=1la4J3NZ7wrFmHyZ3tm5SSfa2m7oFCM9d"></audio></li><li><p>2. Noroc frate – pozitiv vesel</p><audio controls src="https://docs.google.com/uc?export=download&id=1YNRfZyGZnw2ZNUa2eJ1kLJzE2JpJVQav"></audio></li><li><p>3. Te ridici din lacrimi – motivațional</p><audio controls src="https://docs.google.com/uc?export=download&id=1jAtYh4IeZmDlHSlytFAL2bKLlZZ3EoPs"></audio></li></ul></div></div></section>
+<section id="mostre" class="pb-16 md:pb-20">
+  <div class="container mx-auto px-4">
+    <div class="panel p-6 md:p-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
+      <p class="text-slate-700 text-sm mt-2">Apasă ▶︎ pentru a asculta mostrele direct pe site. Doar un track cântă la un moment dat.</p>
+      <div class="mt-6 grid gap-6">
+        <!-- 1 -->
+        <div class="panel p-4 md:p-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="font-semibold">Baladă pentru Raluca — romantic profund</div>
+              <div class="text-sm text-slate-600">Emoțional, cinematic</div>
+            </div>
+            <audio class="sample" controls preload="none"
+                   controlslist="nodownload noplaybackrate"
+                   src="BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
+          </div>
+        </div>
+        <!-- 2 -->
+        <div class="panel p-4 md:p-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="font-semibold">Noroc, frate — pozitiv, vesel</div>
+              <div class="text-sm text-slate-600">Vibe prietenos</div>
+            </div>
+            <audio class="sample" controls preload="none"
+                   controlslist="nodownload noplaybackrate"
+                   src="Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
+          </div>
+        </div>
+        <!-- 3 -->
+        <div class="panel p-4 md:p-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="font-semibold">Om drag — motivațional</div>
+              <div class="text-sm text-slate-600">Mesaj puternic</div>
+            </div>
+            <audio class="sample" controls preload="none"
+                   controlslist="nodownload noplaybackrate"
+                   src="Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20%281%29.mp3"></audio>
+          </div>
+        </div>
+        <!-- 4 -->
+        <div class="panel p-4 md:p-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <div class="font-semibold">Only you, Raluca — romantic modern</div>
+              <div class="text-sm text-slate-600">Declarativ, pop</div>
+            </div>
+            <audio class="sample" controls preload="none"
+                   controlslist="nodownload noplaybackrate"
+                   src="Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  // Face ca doar un audio să cânte la un moment dat
+  (function () {
+    const players = Array.from(document.querySelectorAll('audio.sample'));
+    players.forEach(p => {
+      p.addEventListener('play', () => {
+        players.forEach(o => { if (o !== p) o.pause(); });
+      });
+    });
+  })();
+</script>
+<!-- MOSTRE AUDIO -->
+<section id="mostre" class="pb-16 md:pb-20">
+  <div class="container mx-auto px-4">
+    <div class="panel p-6 md:p-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
+      <p class="text-slate-700 text-sm mt-2">Apasă ▶︎ pentru a asculta mostrele direct pe site.</p>
+      <div class="mt-6 grid gap-6">
+        <div class="panel p-4 md:p-6"><div class="flex items-center justify-between gap-4"><div><div class="font-semibold">Mostră 1</div></div><audio class="sample" controls preload="none" src="mostra-1-raluca-balada.mp3"></audio></div></div>
+        <div class="panel p-4 md:p-6"><div class="flex items-center justify-between gap-4"><div><div class="font-semibold">Mostră 2</div></div><audio class="sample" controls preload="none" src="mostra-2-florin-david.mp3"></audio></div></div>
+        <div class="panel p-4 md:p-6"><div class="flex items-center justify-between gap-4"><div><div class="font-semibold">Mostră 3</div></div><audio class="sample" controls preload="none" src="mostra-3-om-drag-om.mp3"></audio></div></div>
+        <div class="panel p-4 md:p-6"><div class="flex items-center justify-between gap-4"><div><div class="font-semibold">Mostră 4</div></div><audio class="sample" controls preload="none" src="mostra-4-raluca-only-you.mp3"></audio></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>(function(){const p=Array.from(document.querySelectorAll('audio.sample'));p.forEach(a=>a.addEventListener('play',()=>p.forEach(o=>{if(o!==a)o.pause()})));})();</script>
 <!-- PREȚURI -->
   <section id="pricing" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
