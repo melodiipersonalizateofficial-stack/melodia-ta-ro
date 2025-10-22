@@ -71,7 +71,7 @@
     </div>
   </section>
 
-  <!-- ORDER + PLĂȚI (formular + calculator) -->
+  <!-- ORDER + PLĂȚI (formular + calculator fără câmpul „Vocal”) -->
   <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <div class="panel p-6 md:p-8">
@@ -94,23 +94,46 @@
             <input required type="email" name="email_client" class="field" placeholder="adresa@exemplu.ro" />
           </label>
 
-          <!-- GENURI extinse -->
+          <!-- GENURI extinse (mult mai multe, inclusiv Techno etc.) -->
           <label class="grid gap-1">
             <span class="text-sm text-slate-700">Gen muzical dorit*</span>
             <select required name="gen" id="gen" class="field">
               <option value="">Alege genul</option>
+              <!-- Pop / mainstream -->
               <option>Pop modern</option>
+              <option>Indie Pop</option>
+              <option>R&B / Soul</option>
+              <option>Rock</option>
+              <option>Rock alternativ</option>
+              <!-- Cinema / balade -->
               <option>Cinematic romantic (baladă cu orchestră)</option>
-              <option>Manea modernă / Balkan pop</option>
+              <option>Baladă cinematică</option>
+              <!-- Urban / hip-hop -->
               <option>Trap / Hip-Hop emoțional</option>
+              <option>Hip-Hop clasic</option>
+              <!-- Global / dance -->
               <option>Afrobeat / Dancehall</option>
+              <option>Reggaeton / Latin Pop</option>
+              <option>K-Pop style</option>
+              <!-- Electronic -->
+              <option>Techno</option>
+              <option>House</option>
+              <option>Deep House</option>
+              <option>EDM / Big Room</option>
+              <option>Trance</option>
+              <option>Drum & Bass</option>
+              <option>Lo-Fi / Chill</option>
+              <!-- Local / evenimente -->
+              <option>Manea modernă / Balkan pop</option>
+              <option>Muzică populară</option>
+              <option>Muzică de petrecere</option>
+              <option>Muzică pentru onomastică</option>
+              <!-- Ambient / special -->
               <option>Ambient / Meditație / Spiritual</option>
               <option>Folk / Retro</option>
               <option>Parodie / Glumă personalizată</option>
               <option>Gospel / stil bisericesc</option>
-              <option>Muzică populară</option>
-              <option>Muzică de petrecere</option>
-              <option>Muzică pentru onomastică</option>
+              <option>Country Pop</option>
             </select>
             <small class="text-slate-600">Prețul de bază depinde de gen (vezi totalul jos).</small>
           </label>
@@ -126,14 +149,7 @@
               </select>
             </label>
 
-            <label class="grid gap-1">
-              <span class="text-sm text-slate-700">Vocal</span>
-              <select id="vocal" name="vocal" class="field">
-                <option value="instrumental">Instrumental (0)</option>
-                <option value="ai">Voce generată/AI (+30 lei)</option>
-                <option value="real">Voce reală (+80 lei)</option>
-              </select>
-            </label>
+            <!-- (câmpul „Vocal” a fost eliminat) -->
           </div>
 
           <div class="grid sm:grid-cols-2 gap-4">
@@ -380,13 +396,12 @@
       }));
     })();
 
-    // === CALCULATOR PREȚ ===
+    // === CALCULATOR PREȚ (fără câmp „Vocal”) ===
     (function(){
       const byId = id => document.getElementById(id);
       const els = {
         gen: byId('gen'),
         durata: byId('durata'),
-        vocal: byId('vocal'),
         express: byId('express'),
         comercial: byId('comercial'),
         exclusiv: byId('exclusiv'),
@@ -396,20 +411,43 @@
         hiddenBreakdown: byId('pret_breakdown')
       };
 
-      // Baza pe gen (lei) — match exact cu opțiunile
+      // Baza pe gen (lei) — exact ca opțiunile din <select>
       const baseByGen = {
+        // Pop / mainstream
         'Pop modern': 100,
+        'Indie Pop': 110,
+        'R&B / Soul': 120,
+        'Rock': 120,
+        'Rock alternativ': 130,
+        // Cinema / balade
         'Cinematic romantic (baladă cu orchestră)': 200,
-        'Manea modernă / Balkan pop': 150,
+        'Baladă cinematică': 180,
+        // Urban / hip-hop
         'Trap / Hip-Hop emoțional': 120,
+        'Hip-Hop clasic': 110,
+        // Global / dance
         'Afrobeat / Dancehall': 140,
+        'Reggaeton / Latin Pop': 140,
+        'K-Pop style': 140,
+        // Electronic
+        'Techno': 130,
+        'House': 130,
+        'Deep House': 130,
+        'EDM / Big Room': 150,
+        'Trance': 150,
+        'Drum & Bass': 150,
+        'Lo-Fi / Chill': 110,
+        // Local / evenimente
+        'Manea modernă / Balkan pop': 150,
+        'Muzică populară': 140,
+        'Muzică de petrecere': 130,
+        'Muzică pentru onomastică': 100,
+        // Ambient / special
         'Ambient / Meditație / Spiritual': 130,
         'Folk / Retro': 110,
         'Parodie / Glumă personalizată': 90,
         'Gospel / stil bisericesc': 130,
-        'Muzică populară': 140,
-        'Muzică de petrecere': 130,
-        'Muzică pentru onomastică': 100
+        'Country Pop': 120
       };
 
       function calc(){
@@ -430,14 +468,6 @@
         items.push(`Durată: ${els.durata.options[els.durata.selectedIndex].text} — ${dCost} lei`);
         total += dCost;
 
-        // Vocal
-        const v = els.vocal.value;
-        let vCost = 0;
-        if (v === 'ai') vCost = 30;
-        if (v === 'real') vCost = 80;
-        items.push(`Vocal: ${els.vocal.options[els.vocal.selectedIndex].text} — ${vCost} lei`);
-        total += vCost;
-
         // Opțiuni
         if (els.express.checked)   { items.push('Express 48h — 50 lei'); total += 50; }
         if (els.comercial.checked) { items.push('Drepturi comerciale — 150 lei'); total += 150; }
@@ -450,9 +480,9 @@
         els.hiddenBreakdown.value = items.join(' | ');
       }
 
-      // Re-calc la orice schimbare
+      // Recalc la orice schimbare
       ['change','input'].forEach(ev=>{
-        ['gen','durata','vocal','express','comercial','exclusiv'].forEach(id=>{
+        ['gen','durata','express','comercial','exclusiv'].forEach(id=>{
           const el = document.getElementById(id);
           if (el) el.addEventListener(ev, calc);
         });
