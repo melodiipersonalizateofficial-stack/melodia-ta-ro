@@ -1,28 +1,19 @@
-<!DOCTYPE html><html lang="ro"><head>
+<!DOCTYPE html><html lang="ro">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <link rel="icon" type="image/png" href="assets/emblema.png" />
-  <!-- restul codului rămâne identic, doar favicon și logo au emblema.png -->
-</head>
-<body>
-<header class="hdr sticky top-0 z-40">
-  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-    <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-      <img src="assets/emblema.png" alt="Melodia Unica" class="logo-crest"/>
-      <span>Melodia Unica</span>
-    </a>
-    <!-- ... restul rămâne neschimbat ... -->
-  </div>
-</header>
-<!-- păstrez absolut tot codul tău mai jos, intact -->
-</body>
-</html>
+  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png?v=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
     :root{
       --panel-bg: rgba(255,255,255,.42);
       --panel-brd: rgba(0,0,0,.06);
-      --scrim: rgba(255,255,255,.08); /* temă luminoasă */
+      --scrim: rgba(255,255,255,.08);
       --text-stroke: 1px rgba(255,255,255,.35);
     }
     html { scroll-behavior: smooth; }
@@ -61,12 +52,11 @@
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER cu SIGLĂ + TITLU (fără textul „Emblema”) -->
+  <!-- HEADER cu SIGLĂ + TITLU -->
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <!-- DOAR poza (nu apare cuvântul „Emblema” nici dacă imaginea lipsește) -->
-        <img id="site-logo" src="assets/emblema.png?v=3" alt="Melodia Unica" class="logo-crest" />
+        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png?v=1" alt="Melodia Unica" class="logo-crest" />
         <span>Melodia Unica</span>
       </a>
 
@@ -383,27 +373,11 @@
       });
     })();
 
-    // LOGO fallback: dacă assets/emblema.png nu există, încearcă alte nume comune
+    // LOGO: ascunde dacă fișierul lipsește (fără text suplimentar)
     (function(){
       const img = document.getElementById('site-logo');
       if(!img) return;
-      const candidates = [
-        'assets/emblema.png?v=3',
-        'assets/logo-emblema.png?v=3',
-        'assets/logo.png?v=3',
-        'assets/Emblema.png?v=3'
-      ];
-      let idx = 0;
-      function tryNext(){
-        if(idx >= candidates.length){ img.style.display='none'; return; }
-        const test = new Image();
-        const url = candidates[idx++];
-        test.onload = ()=>{ img.src = url; };
-        test.onerror = tryNext;
-        test.src = url;
-      }
-      // dacă prima sursă e ruptă, pornește fallback-ul
-      img.addEventListener('error', tryNext, { once:true });
+      img.addEventListener('error', ()=>{ img.style.display='none'; }, { once:true });
     })();
 
     // CALCULATOR DE PREȚ (live) — bază 95 lei
@@ -436,13 +410,12 @@
         hiddenOpts.value  = chosen.join(', ');
         hiddenShip.value  = shipName;
 
-        // actualizează sumele în linkuri (PayPal & Revolut)
         btnPayPal.href = `https://paypal.me/Serviciidigitale/${total}`;
         btnRevolut.href = `https://revolut.me/razvan3ltl/${total}`;
       }
       opts.forEach(ch => ch.addEventListener('change', calc));
       ships.forEach(r => r.addEventListener('change', calc));
-      calc(); // init
+      calc();
 
       // submit -> trimite la Formspree și derulează la plată
       const status = document.getElementById('ro-status');
