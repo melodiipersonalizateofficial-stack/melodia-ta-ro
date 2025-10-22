@@ -4,8 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <!-- păstrat exact ca înainte -->
-  <link rel="icon" type="image/png" href="assets/emblema.png" />
+  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -21,7 +20,7 @@
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
     .container { max-width: 1120px; }
 
-    /* Slideshow global */
+    /* Slideshow */
     #bgshow { position:fixed; inset:0; z-index:-2; }
     #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
     #bgshow .slide.active { opacity:1; }
@@ -35,16 +34,22 @@
     .btn-primary:hover { opacity:.95; }
     .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
     .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
-    .logo-crest { height: 48px; width:auto; object-fit:contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.18)); } /* mărimea emblemei – păstrat */
+
+    /* SIGLA: exact 80px înălțime */
+    .logo-crest { height:80px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
+
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 
-    /* SINGURA MODIFICARE CERUTĂ: playerele audio mai mici, să nu iasă din rând */
-    audio.sample { max-width: 240px; width: 100%; }
+    /* Playere audio puțin mai înguste (ca să nu iasă din rând) */
+    audio.sample { max-width: 240px; width:100%; }
     @media (min-width:640px){ audio.sample { max-width: 320px; } }
+
+    /* Evită „ieșirea” textelor lungi (email, linkuri) din panouri */
+    .wrap { overflow-wrap:anywhere; word-break: break-word; }
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW GLOBAL (8 imagini, natură & muzică) -->
+  <!-- SLIDESHOW -->
   <div id="bgshow" aria-hidden="true">
     <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
@@ -57,22 +62,19 @@
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER cu emblema (NU am schimbat sursa imaginii) -->
+  <!-- HEADER -->
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <img src="file_00000000fc9c62468d8c49611871c2d4.png?v=2" alt="Melodia Unica" class="logo-crest"/>
+        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png" alt="Melodia Unica" class="logo-crest" />
         <span>Melodia Unica</span>
       </a>
-
-      <!-- Social sus (identic) -->
       <nav class="hidden md:flex items-center gap-2">
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
       </nav>
-
       <div class="flex items-center gap-2">
         <a href="#order" class="btn btn-primary">Comandă</a>
         <a href="#plata" class="btn btn-ghost">Plată</a>
@@ -91,7 +93,6 @@
           <a href="#mostre" class="btn btn-ghost">Ascultă mostre</a>
           <a href="#plata" class="btn btn-ghost">Mergi la plată</a>
         </div>
-        <!-- Social pe mobil -->
         <div class="mt-4 flex flex-wrap gap-2 md:hidden">
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
@@ -105,7 +106,6 @@
   <!-- ORDER + CALCULATOR + PLĂȚI -->
   <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
-      <!-- Comandă -->
       <div class="panel p-6 md:p-8">
         <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
         <p class="text-slate-600 text-sm mt-1">Completează câmpurile. Totalul se calculează automat.</p>
@@ -142,7 +142,6 @@
             <textarea required name="mesaj" rows="5" class="field" placeholder="Pentru cine e melodia, ocazie, vibe, inside jokes, cuvinte cheie…"></textarea>
           </label>
 
-          <!-- Opțiuni -->
           <div class="grid sm:grid-cols-2 gap-3">
             <label class="chip">
               <span>Mix & master avansat</span>
@@ -162,7 +161,6 @@
             </label>
           </div>
 
-          <!-- Expediere -->
           <div class="grid gap-2">
             <div class="text-sm text-slate-700 font-semibold">Expediere / Timp de livrare</div>
             <label class="chip"><span>Standard (3–5 zile)</span><span class="text-sm text-slate-600">+0 lei <input type="radio" name="ship" class="ship" data-name="Standard (3–5 zile)" value="0" checked></span></label>
@@ -170,13 +168,11 @@
             <label class="chip"><span>Ultra (24h)</span><span class="text-sm text-slate-600">+120 lei <input type="radio" name="ship" class="ship" data-name="Ultra (24h)" value="120"></span></label>
           </div>
 
-          <!-- GDPR -->
           <label class="inline-flex items-start gap-3 text-sm text-slate-700">
             <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
             Sunt de acord ca datele mele să fie folosite pentru a crea melodia (GDPR).
           </label>
 
-          <!-- Total + plăți -->
           <div class="grid gap-3 rounded-2xl border bg-white/80 p-4">
             <div class="text-sm text-slate-600">Total estimat</div>
             <div class="text-4xl font-extrabold"><span id="calc-total">95</span> lei</div>
@@ -195,7 +191,6 @@
         </form>
       </div>
 
-      <!-- Info Plată -->
       <div id="plata" class="panel p-6 md:p-8">
         <h3 class="text-2xl font-extrabold">Plată</h3>
         <p class="mt-1 text-sm text-slate-700">Alege metoda preferată (oficiale):</p>
@@ -224,7 +219,6 @@
         <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
         <p class="text-slate-700 text-sm mt-2">Apasă ▶︎ pentru a asculta mostrele direct pe site. Doar un track cântă la un moment dat.</p>
         <div class="mt-6 grid gap-6">
-          <!-- 1 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
@@ -236,7 +230,6 @@
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
             </div>
           </div>
-          <!-- 2 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
@@ -248,7 +241,6 @@
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
             </div>
           </div>
-          <!-- 3 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
@@ -260,7 +252,6 @@
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
             </div>
           </div>
-          <!-- 4 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
@@ -315,9 +306,16 @@
       <div class="panel p-6 md:p-10">
         <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
         <div class="mt-6 grid md:grid-cols-3 gap-6">
-          <div class="panel p-6"><div class="text-sm text-slate-600">Email</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
-          <div class="panel p-6"><div class="text-sm text-slate-600">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
-          <div class="panel p-6"><div class="text-sm text-slate-600">Social</div>
+          <div class="panel p-6">
+            <div class="text-sm text-slate-600">Email</div>
+            <a class="text-lg font-semibold hover:underline wrap" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a>
+          </div>
+          <div class="panel p-6">
+            <div class="text-sm text-slate-600">WhatsApp</div>
+            <a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a>
+          </div>
+          <div class="panel p-6">
+            <div class="text-sm text-slate-600">Social</div>
             <div class="mt-2 flex flex-wrap gap-2">
               <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
               <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
@@ -353,10 +351,8 @@
 
   <!-- JS -->
   <script>
-    // anul curent
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // slideshow imagini
     (function(){
       const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
       if(!slides.length) return;
@@ -368,7 +364,6 @@
       }, 12000);
     })();
 
-    // doar un audio cântă la un moment dat (mostre)
     (function () {
       const players = Array.from(document.querySelectorAll('audio.sample'));
       players.forEach(p => {
@@ -378,7 +373,12 @@
       });
     })();
 
-    // CALCULATOR DE PREȚ (BASE = 95 lei)
+    (function(){
+      const img = document.getElementById('site-logo');
+      if(!img) return;
+      img.addEventListener('error', ()=>{ img.style.display='none'; }, { once:true });
+    })();
+
     (function(){
       const BASE = 95;
       const totalEl = document.getElementById('calc-total');
@@ -415,7 +415,6 @@
       ships.forEach(r => r.addEventListener('change', calc));
       calc();
 
-      // submit -> Formspree + derulare la plată
       const status = document.getElementById('ro-status');
       const pay = document.getElementById('plata');
       form.addEventListener('submit', async (e)=>{
