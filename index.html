@@ -56,7 +56,7 @@
     </div>
   </header>
 
-  <!-- HERO (fără cardurile audio de la început) -->
+  <!-- HERO -->
   <section id="top" class="py-14 md:py-20">
     <div class="container mx-auto px-4">
       <div class="panel p-8 md:p-10">
@@ -71,37 +71,105 @@
     </div>
   </section>
 
-  <!-- ORDER + PLĂȚI -->
+  <!-- ORDER + PLĂȚI (formular + calculator) -->
   <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <div class="panel p-6 md:p-8">
         <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
         <p class="text-slate-600 text-sm mt-1">Completează 4 câmpuri. După trimitere poți plăti cu Card / PayPal / Revolut.</p>
+
         <form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
           <input type="hidden" name="site" value="RO" />
+          <!-- total & breakdown pentru email -->
+          <input type="hidden" name="pret_total_lei" id="pret_total_lei" value="0" />
+          <input type="hidden" name="pret_breakdown" id="pret_breakdown" value="" />
+
           <label class="grid gap-1">
             <span class="text-sm text-slate-700">Nume complet*</span>
             <input required name="nume_complet" class="field" placeholder="Ex: Andrei Popescu" />
           </label>
+
           <label class="grid gap-1">
             <span class="text-sm text-slate-700">Adresă email*</span>
             <input required type="email" name="email_client" class="field" placeholder="adresa@exemplu.ro" />
           </label>
+
+          <!-- GENURI extinse -->
           <label class="grid gap-1">
             <span class="text-sm text-slate-700">Gen muzical dorit*</span>
-            <select required name="gen" class="field">
+            <select required name="gen" id="gen" class="field">
               <option value="">Alege genul</option>
-              <option>Pop</option><option>Manea modernă</option><option>Trap</option><option>Baladă</option><option>Folk</option><option>Ambient/Meditație</option>
+              <option>Pop modern</option>
+              <option>Cinematic romantic (baladă cu orchestră)</option>
+              <option>Manea modernă / Balkan pop</option>
+              <option>Trap / Hip-Hop emoțional</option>
+              <option>Afrobeat / Dancehall</option>
+              <option>Ambient / Meditație / Spiritual</option>
+              <option>Folk / Retro</option>
+              <option>Parodie / Glumă personalizată</option>
+              <option>Gospel / stil bisericesc</option>
+              <option>Muzică populară</option>
+              <option>Muzică de petrecere</option>
+              <option>Muzică pentru onomastică</option>
             </select>
+            <small class="text-slate-600">Prețul de bază depinde de gen (vezi totalul jos).</small>
           </label>
+
+          <!-- Opțiuni care influențează prețul -->
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="grid gap-1">
+              <span class="text-sm text-slate-700">Durată</span>
+              <select id="durata" name="durata" class="field">
+                <option value="60-120">~60–120 sec. (inclus)</option>
+                <option value="120-180">2–3 minute (+50 lei)</option>
+                <option value="180plus">&gt;3 minute (+100 lei)</option>
+              </select>
+            </label>
+
+            <label class="grid gap-1">
+              <span class="text-sm text-slate-700">Vocal</span>
+              <select id="vocal" name="vocal" class="field">
+                <option value="instrumental">Instrumental (0)</option>
+                <option value="ai">Voce generată/AI (+30 lei)</option>
+                <option value="real">Voce reală (+80 lei)</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+              <input type="checkbox" id="express" name="express" class="mt-1 accent-violet-600" />
+              Express 48h (+50 lei)
+            </label>
+            <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+              <input type="checkbox" id="comercial" name="comercial" class="mt-1 accent-violet-600" />
+              Drepturi comerciale (+150 lei)
+            </label>
+            <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+              <input type="checkbox" id="exclusiv" name="exclusiv" class="mt-1 accent-violet-600" />
+              Exclusivitate (+300 lei)
+            </label>
+          </div>
+
           <label class="grid gap-1">
             <span class="text-sm text-slate-700">Povestea ta / instrucțiuni*</span>
             <textarea required name="mesaj" rows="5" class="field" placeholder="Pentru cine e melodia, ocazie, vibe, inside jokes, cuvinte cheie…"></textarea>
           </label>
+
+          <!-- TOTAL live -->
+          <div class="panel p-4">
+            <div class="flex items-center justify-between">
+              <div class="text-sm text-slate-700">Total estimat</div>
+              <div id="total" class="text-2xl font-extrabold">0 lei</div>
+            </div>
+            <div id="breakdown" class="text-xs text-slate-600 mt-2"></div>
+          </div>
+
           <label class="inline-flex items-start gap-3 text-sm text-slate-700">
             <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
             Sunt de acord ca datele mele să fie folosite pentru a crea melodia (GDPR).
           </label>
+
           <div class="flex flex-wrap gap-3 items-center">
             <button type="submit" class="btn btn-primary">Trimite comanda</button>
             <div id="ro-status" class="text-sm text-slate-600 hidden">Se trimit detaliile…</div>
@@ -139,9 +207,7 @@
     </div>
   </section>
 
-  <!-- (secțiunile audio #2 și #3 au fost șterse) -->
-
-  <!-- MOSTRE AUDIO #4 – PĂSTRAT (penultima) -->
+  <!-- MOSTRE AUDIO (penultima, păstrată) -->
   <section id="mostre" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -196,22 +262,11 @@
       </div>
     </div>
   </section>
-  <script>
-    // doar un audio cântă simultan (pentru secțiunea păstrată)
-    (function () {
-      const players = Array.from(document.querySelectorAll('audio.sample'));
-      players.forEach(p => p.addEventListener('play', () => {
-        players.forEach(o => { if (o !== p) o.pause(); });
-      }));
-    })();
-  </script>
-
-  <!-- (secțiunea audio #5 a fost ștearsă) -->
 
   <!-- PREȚURI -->
   <section id="pricing" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
-      <div class="panel p-6 md:p-10">
+      <div class="panel p-6 md:pb-10 md:px-10 px-6">
         <h2 class="text-3xl md:text-4xl font-extrabold">Prețuri — România</h2>
         <p class="text-slate-700 text-sm mt-2">Preț de bază <b>100 lei</b> / melodie + opțiuni (express, comercial, exclusivitate).</p>
         <div class="mt-8 grid md:grid-cols-3 gap-6">
@@ -317,16 +372,94 @@
       });
     })();
 
-    // play/pause unic (dacă rămân butoane .play în alte locuri)
+    // doar un audio cântă simultan (secțiunea păstrată)
+    (function () {
+      const players = Array.from(document.querySelectorAll('audio.sample'));
+      players.forEach(p => p.addEventListener('play', () => {
+        players.forEach(o => { if (o !== p) o.pause(); });
+      }));
+    })();
+
+    // === CALCULATOR PREȚ ===
     (function(){
-      document.querySelectorAll('.play').forEach(btn=>{
-        btn.addEventListener('click',()=>{
-          const audio = document.querySelector(btn.dataset.target);
-          if(!audio) return;
-          document.querySelectorAll('audio').forEach(a=>{ if(a!==audio){ a.pause(); }});
-          if(audio.paused){ audio.play(); } else { audio.pause(); }
+      const byId = id => document.getElementById(id);
+      const els = {
+        gen: byId('gen'),
+        durata: byId('durata'),
+        vocal: byId('vocal'),
+        express: byId('express'),
+        comercial: byId('comercial'),
+        exclusiv: byId('exclusiv'),
+        total: byId('total'),
+        breakdown: byId('breakdown'),
+        hiddenTotal: byId('pret_total_lei'),
+        hiddenBreakdown: byId('pret_breakdown')
+      };
+
+      // Baza pe gen (lei) — match exact cu opțiunile
+      const baseByGen = {
+        'Pop modern': 100,
+        'Cinematic romantic (baladă cu orchestră)': 200,
+        'Manea modernă / Balkan pop': 150,
+        'Trap / Hip-Hop emoțional': 120,
+        'Afrobeat / Dancehall': 140,
+        'Ambient / Meditație / Spiritual': 130,
+        'Folk / Retro': 110,
+        'Parodie / Glumă personalizată': 90,
+        'Gospel / stil bisericesc': 130,
+        'Muzică populară': 140,
+        'Muzică de petrecere': 130,
+        'Muzică pentru onomastică': 100
+      };
+
+      function calc(){
+        let items = [];
+        let total = 0;
+
+        // GEN
+        const gen = els.gen.value;
+        const base = baseByGen[gen] || 0;
+        items.push(gen ? `Gen: ${gen} — ${base} lei` : 'Gen: (alege) — 0 lei');
+        total += base;
+
+        // Durată
+        const d = els.durata.value;
+        let dCost = 0;
+        if (d === '120-180') dCost = 50;
+        if (d === '180plus') dCost = 100;
+        items.push(`Durată: ${els.durata.options[els.durata.selectedIndex].text} — ${dCost} lei`);
+        total += dCost;
+
+        // Vocal
+        const v = els.vocal.value;
+        let vCost = 0;
+        if (v === 'ai') vCost = 30;
+        if (v === 'real') vCost = 80;
+        items.push(`Vocal: ${els.vocal.options[els.vocal.selectedIndex].text} — ${vCost} lei`);
+        total += vCost;
+
+        // Opțiuni
+        if (els.express.checked)   { items.push('Express 48h — 50 lei'); total += 50; }
+        if (els.comercial.checked) { items.push('Drepturi comerciale — 150 lei'); total += 150; }
+        if (els.exclusiv.checked)  { items.push('Exclusivitate — 300 lei'); total += 300; }
+
+        // Afișare + trimis în formular
+        els.total.textContent = `${total} lei`;
+        els.breakdown.innerHTML = items.map(i=>`• ${i}`).join('<br>');
+        els.hiddenTotal.value = String(total);
+        els.hiddenBreakdown.value = items.join(' | ');
+      }
+
+      // Re-calc la orice schimbare
+      ['change','input'].forEach(ev=>{
+        ['gen','durata','vocal','express','comercial','exclusiv'].forEach(id=>{
+          const el = document.getElementById(id);
+          if (el) el.addEventListener(ev, calc);
         });
       });
+
+      // init
+      calc();
     })();
   </script>
 </body>
