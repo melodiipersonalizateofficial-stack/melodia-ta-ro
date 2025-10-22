@@ -1,434 +1,363 @@
-<!DOCTYPE html><html lang="ro">
+<!DOCTYPE html>
+<html lang="ro">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Melodia Unica — Melodii 100% personalizate</title>
-  <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <link rel="icon" type="image/png" href="assets/logo-emblema.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Melodia Unică — Melodii la comandă 100% personalizate</title>
+  <meta name="description" content="Spune-mi povestea, eu o transform în muzică. Melodii la comandă 100% personalizate — perfecte pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video." />
+  <!-- Favicon = emblema -->
+  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
   <style>
     :root{
-      --panel-bg: rgba(255,255,255,.42);
-      --panel-brd: rgba(0,0,0,.06);
-      --scrim: rgba(255,255,255,.08); /* temă luminoasă */
-      --text-stroke: 1px rgba(255,255,255,.35);
+      --brand:#6e2cff;      /* mov elegant pentru accente */
+      --ink:#0f172a;        /* text închis */
+      --paper:#ffffff;      /* suprafețe */
+      --veil:rgba(15,23,42,.45); /* overlay peste imagini */
+      --glass:rgba(255,255,255,.22);
+      --ring:rgba(110,44,255,.35);
+      --ok:#0ea5e9;
+      --ok-2:#22c55e;
+      --warn:#f59e0b;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
-    .container { max-width: 1120px; }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:#000;
+    }
 
-    /* Slideshow global */
-    #bgshow { position:fixed; inset:0; z-index:-2; }
-    #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
-    #bgshow .slide.active { opacity:1; }
-    #bg-scrim { position:fixed; inset:0; z-index:-1; background: var(--scrim); backdrop-filter: saturate(120%) blur(1px); }
+    /* ===== NAVBAR ===== */
+    .nav{
+      position:fixed; inset:12px 12px auto 12px;
+      z-index:20;
+      display:flex; align-items:center; gap:12px;
+      padding:10px 12px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width:0;
+      padding-right:8px;
+    }
+    .brand img{
+      width:44px; height:44px; border-radius:10px; flex:0 0 auto;
+      box-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+    .brand .t1{
+      font-weight:800; font-size:22px; letter-spacing:.2px; white-space:nowrap;
+    }
+    .pill{
+      appearance:none; border:none; cursor:pointer;
+      padding:10px 18px; border-radius:999px;
+      font-weight:700; font-size:16px; white-space:nowrap;
+      transition:transform .05s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .pill:active{ transform:translateY(1px) }
+    .pill.primary{ background:var(--brand); color:#fff; box-shadow:0 8px 18px var(--ring) }
+    .pill.soft{ background:rgba(255,255,255,.85); color:#0f172a; }
+    .icons{ display:flex; gap:8px; margin-left:6px}
+    .icon-btn{
+      width:40px;height:40px;border-radius:12px;border:none;cursor:pointer;
+      background:rgba(255,255,255,.9); display:grid; place-items:center;
+      box-shadow:0 6px 14px rgba(0,0,0,.15);
+      transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .icon-btn:hover{background:#fff}
+    .icon-btn:active{transform:translateY(1px)}
+    .icon{ width:22px; height:22px; display:block }
 
-    .panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.10); backdrop-filter: blur(4px); }
-    h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgba(255,255,255,.25); }
-    .hdr { background: rgba(255,255,255,.75); backdrop-filter: blur(8px); border-bottom: 1px solid var(--panel-brd); }
-    .btn { border-radius: 16px; padding: 12px 18px; font-weight:600; display:inline-flex; align-items:center; gap:.5rem; }
-    .btn-primary { background:#6d28d9; color:white; box-shadow: 0 8px 20px rgba(109,40,217,.25); }
-    .btn-primary:hover { opacity:.95; }
-    .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
-    .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
-    .logo-crest { height: 32px; width:auto; object-fit:contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.18)); }
-    .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+    /* ===== SLIDESHOW ===== */
+    .slides{
+      position:fixed; inset:0; z-index:-1; overflow:hidden;
+      background:#000;
+    }
+    .slides::after{
+      content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(0,0,0,0) 20%, rgba(0,0,0,.45) 80%);
+      pointer-events:none;
+    }
+    .slide{
+      position:absolute; inset:0; background-size:cover; background-position:center;
+      opacity:0; transition: opacity 1.2s ease;
+      transform:scale(1.02);
+    }
+    .slide.show{ opacity:1 }
+
+    /* ===== HERO ===== */
+    .hero{
+      min-height:88svh; display:grid; place-items:center; padding:120px 16px 60px;
+    }
+    .hero-card{
+      width:min(1100px, 96vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75));
+      border-radius:32px;
+      padding: clamp(20px, 6vw, 48px);
+      box-shadow:0 30px 60px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,.5);
+    }
+    .eyebrow{ font-weight:900; color:#0b1220; font-size: clamp(36px, 6.2vw, 72px); line-height:1.04; letter-spacing:.2px; margin:0 0 18px }
+    .eyebrow .accent{ color:var(--brand); text-shadow:0 2px 0 rgba(110,44,255,.08) }
+    .lead{ font-size: clamp(16px, 2.6vw, 22px); line-height:1.6; color:#0f172acb; margin: 0 0 26px }
+    .cta-row{ display:flex; flex-wrap:wrap; gap:14px }
+    .cta-row .pill{ font-size:18px; padding:12px 18px }
+
+    /* ===== CALCULATOR ===== */
+    .section{
+      padding: 28px 16px 90px; background:linear-gradient(180deg, rgba(255,255,255,.9), #fff);
+    }
+    .wrap{ width:min(1100px, 96vw); margin-inline:auto }
+    h2{ font-size: clamp(28px, 4.8vw, 42px); margin:0 0 18px }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card{
+      background:#fff; border-radius:22px; padding:18px 18px;
+      border:1px solid rgba(15,23,42,.06);
+      box-shadow:0 10px 24px rgba(2,8,23,.05);
+    }
+    .card h3{ margin:4px 0 10px; font-size:18px }
+    .opt{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 0; border-bottom:1px dashed rgba(15,23,42,.08)}
+    .opt:last-child{ border-bottom:none }
+    .opt label{ font-weight:600 }
+    select, input[type="checkbox"]{
+      font: inherit; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,42,.18); background:#fff;
+    }
+    .total{
+      font-size: clamp(22px, 4vw, 32px); font-weight:900; margin: 6px 0 12px
+    }
+    .hint{ color:#475569; font-size:14px }
+    .ok{ color:var(--ok-2) }
+
+    /* ===== FOOTER ===== */
+    footer{
+      padding:26px 16px 60px; color:#e2e8f0;
+      background:linear-gradient(180deg, #0b1220, #0b1220 60%, #05070f);
+    }
+    .foot{ width:min(1100px, 96vw); margin-inline:auto; display:flex; flex-wrap:wrap; align-items:center; gap:14px; justify-content:space-between}
+    .badge{ display:flex; align-items:center; gap:10px; color:#cbd5e1; }
+    .badge img{ width:28px; height:28px; border-radius:6px }
+    .foot small{ color:#94a3b8 }
+    @media (max-width:720px){
+      .brand .t1{ font-size:18px }
+      .nav{ inset:8px 8px auto 8px; }
+    }
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW GLOBAL (8 imagini, natură & muzică) -->
-  <div id="bgshow" aria-hidden="true">
-    <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/995301/pexels-photo-995301.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1642772/pexels-photo-1642772.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
-  </div>
-  <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER cu EMBLEMA -->
-  <header class="hdr sticky top-0 z-40">
-    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <img src="assets/logo-emblema.png" alt="Emblema Melodia Unica" class="logo-crest"/>
-        <span>Melodia Unica</span>
+  <!-- ===== FIXED NAVBAR ===== -->
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="Melodia Unică">
+      <img alt="Emblema Melodia Unică" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
+      <div class="t1">Melodia Unica</div>
+    </a>
+    <a class="pill primary" href="#comanda">Comandă</a>
+    <a class="pill soft" href="#plata">Plată</a>
+    <div class="icons" aria-label="Rețele & contact">
+      <a class="icon-btn" href="https://wa.me/40757641284" target="_blank" rel="noopener" title="WhatsApp">
+        <img class="icon" alt="WhatsApp" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
       </a>
+      <a class="icon-btn" href="https://tiktok.com/@melodia.unica" target="_blank" rel="noopener" title="TikTok">
+        <img class="icon" alt="TikTok" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg">
+      </a>
+      <a class="icon-btn" href="https://www.facebook.com/profile.php?id=61582511259127" target="_blank" rel="noopener" title="Facebook">
+        <img class="icon" alt="Facebook" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg">
+      </a>
+      <a class="icon-btn" href="https://instagram.com/melodia.unica" target="_blank" rel="noopener" title="Instagram">
+        <img class="icon" alt="Instagram" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
+      </a>
+      <a class="icon-btn" href="https://melodiaunica.ro" target="_blank" rel="noopener" title="Site">
+        <img class="icon" alt="Link" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/link.svg">
+      </a>
+    </div>
+  </nav>
 
-      <!-- Social sus -->
-      <nav class="hidden md:flex items-center gap-2">
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
-        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
-      </nav>
+  <!-- ===== BACKGROUND SLIDESHOW (natură + muzică) ===== -->
+  <div class="slides" aria-hidden="true">
+    <div class="slide show" style="background-image:url('https://images.unsplash.com/photo-1497339100210-9e87df79c218?q=80&w=1600&auto=format&fit=crop');"></div> <!-- mixer -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- notițe muzică -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1600&auto=format&fit=crop');"></div> <!-- pădure luminată -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1600&auto=format&fit=crop');"></div> <!-- căști -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop');"></div> <!-- munți apus -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1444824775686-4185f172c44b?q=80&w=1600&auto=format&fit=crop');"></div> <!-- valuri -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a7?q=80&w=1600&auto=format&fit=crop');"></div> <!-- chitară -->
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- cer cu stele -->
+  </div>
 
-      <div class="flex items-center gap-2">
-        <a href="#order" class="btn btn-primary">Comandă</a>
-        <a href="#plata" class="btn btn-ghost">Plată</a>
+  <!-- ===== HERO ===== -->
+  <header id="top" class="hero">
+    <div class="hero-card">
+      <h1 class="eyebrow">Melodii la <span class="accent">comandă</span> <span class="accent">100%</span> personalizate</h1>
+      <p class="lead">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
+      <div class="cta-row">
+        <a class="pill primary" href="#comanda">Comandă acum</a>
+        <a class="pill soft" href="#mostre">Ascultă mostre</a>
+        <a class="pill soft" href="#plata">Mergi la plată</a>
       </div>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="top" class="py-14 md:py-20">
-    <div class="container mx-auto px-4">
-      <div class="panel p-8 md:p-10">
-        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Melodii la comandă<br><span class="text-violet-700">100% personalizate</span></h1>
-        <p class="mt-4 text-lg text-slate-700">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#order" class="btn btn-primary">Comandă acum</a>
-          <a href="#mostre" class="btn btn-ghost">Ascultă mostre</a>
-          <a href="#plata" class="btn btn-ghost">Mergi la plată</a>
-        </div>
-        <!-- Social pe mobil -->
-        <div class="mt-4 flex flex-wrap gap-2 md:hidden">
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
-          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORDER + CALCULATOR + PLĂȚI -->
-  <section id="order" class="pb-16 md:pb-20">
-    <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
-      <!-- Comandă -->
-      <div class="panel p-6 md:p-8">
-        <h2 class="text-2xl md:text-3xl font-extrabold">Detalii pentru melodia ta</h2>
-        <p class="text-slate-600 text-sm mt-1">Completează câmpurile. Totalul se calculează automat.</p>
-
-        <form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
-          <input type="hidden" name="site" value="RO" />
-          <input type="hidden" id="total_hidden" name="total_calculat_lei" value="100" />
-          <input type="hidden" id="opts_hidden" name="optiuni_selectate" value="" />
-          <input type="hidden" id="ship_hidden" name="expediere" value="Standard (3–5 zile)" />
-
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Nume complet*</span>
-            <input required name="nume_complet" class="field" placeholder="Ex: Andrei Popescu" />
-          </label>
-
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Adresă email*</span>
-            <input required type="email" name="email_client" class="field" placeholder="adresa@exemplu.ro" />
-          </label>
-
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Gen muzical dorit*</span>
-            <select required name="gen" class="field">
-              <option value="">Alege genul</option>
-              <option>Pop</option><option>Manea modernă</option><option>Trap</option>
-              <option>Baladă</option><option>Folk</option><option>Ambient/Meditație</option>
-              <option>Populară</option><option>De petrecere</option><option>Onomastică</option>
-              <option>Hip-Hop</option><option>Rock</option><option>Techno</option><option>House</option>
+  <!-- ===== CALCULATOR DE PREȚ ===== -->
+  <section id="comanda" class="section">
+    <div class="wrap">
+      <h2>Configurează-ți melodia</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Tip melodie</h3>
+          <div class="opt">
+            <label for="tip">Alege pachet</label>
+            <select id="tip">
+              <option value="499">Standard — 499 RON</option>
+              <option value="799" selected>Premium — 799 RON</option>
+              <option value="1199">Deluxe (orkestrație) — 1199 RON</option>
             </select>
-          </label>
-
-          <label class="grid gap-1">
-            <span class="text-sm text-slate-700">Povestea ta / instrucțiuni*</span>
-            <textarea required name="mesaj" rows="5" class="field" placeholder="Pentru cine e melodia, ocazie, vibe, inside jokes, cuvinte cheie…"></textarea>
-          </label>
-
-          <!-- Opțiuni -->
-          <div class="grid sm:grid-cols-2 gap-3">
-            <label class="chip">
-              <span>Mix & master avansat</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+80 lei <input type="checkbox" class="opt" data-name="Mix&Master" value="80"></span>
-            </label>
-            <label class="chip">
-              <span>Lyrics video 4K</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+70 lei <input type="checkbox" class="opt" data-name="LyricsVideo" value="70"></span>
-            </label>
-            <label class="chip">
-              <span>Licență comercială</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+150 lei <input type="checkbox" class="opt" data-name="LicentaComerciala" value="150"></span>
-            </label>
-            <label class="chip">
-              <span>Exclusivitate</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+300 lei <input type="checkbox" class="opt" data-name="Exclusivitate" value="300"></span>
-            </label>
           </div>
-
-          <!-- Expediere -->
-          <div class="grid gap-2">
-            <div class="text-sm text-slate-700 font-semibold">Expediere / Timp de livrare</div>
-            <label class="chip"><span>Standard (3–5 zile)</span><span class="text-sm text-slate-600">+0 lei <input type="radio" name="ship" class="ship" data-name="Standard (3–5 zile)" value="0" checked></span></label>
-            <label class="chip"><span>Express (48h)</span><span class="text-sm text-slate-600">+50 lei <input type="radio" name="ship" class="ship" data-name="Express (48h)" value="50"></span></label>
-            <label class="chip"><span>Ultra (24h)</span><span class="text-sm text-slate-600">+120 lei <input type="radio" name="ship" class="ship" data-name="Ultra (24h)" value="120"></span></label>
+          <div class="opt">
+            <label for="urgent">Livrare 24h (+199 RON)</label>
+            <input id="urgent" type="checkbox" />
           </div>
-
-          <!-- GDPR -->
-          <label class="inline-flex items-start gap-3 text-sm text-slate-700">
-            <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
-            Sunt de acord ca datele mele să fie folosite pentru a crea melodia (GDPR).
-          </label>
-
-          <!-- Total + plăți -->
-          <div class="grid gap-3 rounded-2xl border bg-white/80 p-4">
-            <div class="text-sm text-slate-600">Total estimat</div>
-            <div class="text-4xl font-extrabold"><span id="calc-total">100</span> lei</div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-              <a id="btn-stripe" href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
-              <a id="btn-paypal" href="https://paypal.me/Serviciidigitale/100" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
-              <a id="btn-revolut" href="https://revolut.me/razvan3ltl/100" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
-            </div>
-            <p class="text-xs text-slate-500">* Stripe demo are sumă fixă (fără backend). PayPal/Revolut preiau suma calculată.</p>
+          <div class="opt">
+            <label for="versuri">Versuri extinse (+99 RON)</label>
+            <input id="versuri" type="checkbox" />
           </div>
-
-          <div class="flex flex-wrap gap-3 items-center">
-            <button type="submit" class="btn btn-primary">Trimite comanda</button>
-            <div id="ro-status" class="text-sm text-slate-600 hidden">Se trimit detaliile…</div>
+          <div class="opt">
+            <label for="videoclip">Videoclip simplu (+149 RON)</label>
+            <input id="videoclip" type="checkbox" />
           </div>
-        </form>
-      </div>
-
-      <!-- Info Plată -->
-      <div id="plata" class="panel p-6 md:p-8">
-        <h3 class="text-2xl font-extrabold">Plată</h3>
-        <p class="mt-1 text-sm text-slate-700">Alege metoda preferată (oficiale):</p>
-        <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <a href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
-          <a href="https://paypal.me/Serviciidigitale" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
-          <a href="https://revolut.me/razvan3ltl" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
         </div>
-        <p class="text-xs text-slate-500 mt-3">* Schimbă linkul Stripe de test cu linkul LIVE când îl ai.</p>
 
-        <div class="mt-6">
-          <div class="text-sm text-slate-600">Contact rapid</div>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
-            <a class="btn btn-ghost" target="_blank" rel="noopener" href="mailto:melodiipersonalizate.official@gmail.com">Email</a>
+        <div class="card">
+          <h3>Expediere & livrare</h3>
+          <div class="opt">
+            <label for="ship">Metodă livrare</label>
+            <select id="ship">
+              <option value="0">Digital (email/WhatsApp) — 0 RON</option>
+              <option value="39">USB personalizat — 39 RON</option>
+              <option value="59">USB + pachet cadou — 59 RON</option>
+            </select>
+          </div>
+          <p class="hint">După plasare vei putea încărca detaliile (poveste, ton, dedicatie). Confirmarea vine pe WhatsApp/Email.</p>
+        </div>
+
+        <div class="card">
+          <h3>Total comandă</h3>
+          <div class="total"><span id="total">0</span> RON</div>
+          <p class="hint">Prețul se actualizează automat. <span class="ok">Nu există costuri ascunse.</span></p>
+          <div class="cta-row">
+            <a class="pill primary" href="#plata">Mergi la plată</a>
+            <a class="pill soft" href="https://wa.me/40757641284" target="_blank" rel="noopener">Întreabă pe WhatsApp</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MOSTRE AUDIO (penultima, funcțională) -->
-  <section id="mostre" class="pb-16 md:pb-20">
-    <div class="container mx-auto px-4">
-      <div class="panel p-6 md:p-10">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
-        <p class="text-slate-700 text-sm mt-2">Apasă ▶︎ pentru a asculta mostrele direct pe site. Doar un track cântă la un moment dat.</p>
-        <div class="mt-6 grid gap-6">
-          <!-- 1 -->
-          <div class="panel p-4 md:p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Baladă pentru Raluca — romantic profund</div>
-                <div class="text-sm text-slate-600">Emoțional, cinematic</div>
-              </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
-            </div>
-          </div>
-          <!-- 2 -->
-          <div class="panel p-4 md:p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Noroc, frate — pozitiv, vesel</div>
-                <div class="text-sm text-slate-600">Vibe prietenos</div>
-              </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
-            </div>
-          </div>
-          <!-- 3 -->
-          <div class="panel p-4 md:p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Om drag — motivațional</div>
-                <div class="text-sm text-slate-600">Mesaj puternic</div>
-              </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
-            </div>
-          </div>
-          <!-- 4 -->
-          <div class="panel p-4 md:p-6">
-            <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Only you, Raluca — romantic modern</div>
-                <div class="text-sm text-slate-600">Declarativ, pop</div>
-              </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
-            </div>
-          </div>
+  <!-- ===== MOSTRE (placeholder) ===== -->
+  <section id="mostre" class="section" style="padding-top:0">
+    <div class="wrap">
+      <h2>Mostre (teaser)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Romantic — baladă</h3>
+          <audio controls preload="none" style="width:100%">
+            <source src="" type="audio/mpeg" />
+          </audio>
+          <p class="hint">Încarcă aici demo-ul tău când dorești (MP3).</p>
+        </div>
+        <div class="card">
+          <h3>Ușor — pop acustic</h3>
+          <audio controls preload="none" style="width:100%">
+            <source src="" type="audio/mpeg" />
+          </audio>
+        </div>
+        <div class="card">
+          <h3>Glume internă — fun</h3>
+          <audio controls preload="none" style="width:100%">
+            <source src="" type="audio/mpeg" />
+          </audio>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PREȚURI -->
-  <section id="pricing" class="pb-16 md:pb-20">
-    <div class="container mx-auto px-4">
-      <div class="panel p-6 md:p-10">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Prețuri — România</h2>
-        <p class="text-slate-700 text-sm mt-2">Preț de bază <b>100 lei</b> / melodie + opțiuni (express, comercial, exclusivitate).</p>
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Bază</div>
-            <div class="mt-2 text-3xl font-extrabold">100 lei</div>
-            <p class="mt-2 text-slate-700">Melodie personalizată ~60–120 sec. 1 revizie. Livrare 3–5 zile.</p>
+  <!-- ===== PLATĂ ===== -->
+  <section id="plata" class="section" style="padding-top:0">
+    <div class="wrap">
+      <h2>Plată & checkout</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Plată online</h3>
+          <p class="hint">Apasă pe butonul de mai jos pentru a finaliza comanda în pagina de plată.</p>
+          <a class="pill primary" href="https://melodiaunica.ro/plata" target="_blank" rel="noopener">Deschide pagina de plată</a>
+        </div>
+        <div class="card">
+          <h3>Contact rapid</h3>
+          <div class="cta-row">
+            <a class="pill soft" href="mailto:melodiipersonalizate.official@gmail.com">Email</a>
+            <a class="pill soft" href="https://wa.me/40757641284" target="_blank" rel="noopener">WhatsApp</a>
           </div>
-          <div class="panel p-6 border-2 border-violet-300 bg-white/85">
-            <div class="text-sm uppercase tracking-wider text-violet-700">Opțiuni populare</div>
-            <ul class="mt-4 space-y-2 text-sm text-slate-800">
-              <li>• Express 48h (+50 lei)</li>
-              <li>• Mix & master avansat (+80 lei)</li>
-              <li>• Lyrics video 4K (+70 lei)</li>
-              <li>• Licență comercială (+150 lei)</li>
-              <li>• Exclusivitate (+300 lei)</li>
-            </ul>
-          </div>
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Complet</div>
-            <div class="mt-2 text-3xl font-extrabold">100 lei + opțiuni</div>
-            <p class="mt-2 text-slate-700">2–3 minute, versuri complete, 2 revizii. Posibil stems la cerere.</p>
-          </div>
+          <p class="hint">RO / DE / internațional — răspund rapid.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="pb-20">
-    <div class="container mx-auto px-4">
-      <div class="panel p-6 md:p-10">
-        <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
-        <div class="mt-6 grid md:grid-cols-3 gap-6">
-          <div class="panel p-6"><div class="text-sm text-slate-600">Email</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
-          <div class="panel p-6"><div class="text-sm text-slate-600">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
-          <div class="panel p-6"><div class="text-sm text-slate-600">Social</div>
-            <div class="mt-2 flex flex-wrap gap-2">
-              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
-              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
-              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
-            </div>
-          </div>
-        </div>
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="foot">
+      <div class="badge">
+        <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
+        <strong>Melodia Unică</strong>
       </div>
+      <small>© <span id="y"></span> Melodia Unică — Toate drepturile rezervate.</small>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="hdr border-t">
-    <div class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm text-slate-700">
-      <div>
-        <div class="font-semibold text-slate-900">🎵 Melodia Unica</div>
-        <p class="mt-2">Comandă melodii personalizate pentru orice ocazie. Livrare rapidă, plăți sigure.</p>
-      </div>
-      <div>
-        <div class="font-semibold text-slate-900">Legal</div>
-        <ul class="mt-2 space-y-2">
-          <li><a href="#" class="hover:underline">Termeni & Condiții</a></li>
-          <li><a href="#" class="hover:underline">Politica de confidențialitate</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="font-semibold text-slate-900">Buton rapid</div>
-        <a class="btn btn-primary mt-2" href="https://wa.me/40757641284" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
-      </div>
-    </div>
-    <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Unica. Toate drepturile rezervate.</div>
   </footer>
 
-  <!-- JS -->
   <script>
-    // anul curent
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // ===== YEAR =====
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // slideshow imagini – schimbă la 12s (poți pune 20000 pt 20s)
-    (function(){
-      const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
-      if(!slides.length) return;
-      let i = 0;
-      setInterval(()=>{
-        slides[i].classList.remove('active');
-        i = (i+1) % slides.length;
-        slides[i].classList.add('active');
-      }, 12000);
-    })();
+    // ===== SLIDESHOW =====
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let idx = 0;
+    setInterval(() => {
+      slides[idx].classList.remove('show');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('show');
+    }, 6000);
 
-    // doar un audio cântă la un moment dat (mostre)
-    (function () {
-      const players = Array.from(document.querySelectorAll('audio.sample'));
-      players.forEach(p => {
-        p.addEventListener('play', () => {
-          players.forEach(o => { if (o !== p) o.pause(); });
-        });
+    // ===== CALCULATOR =====
+    const els = {
+      tip: document.getElementById('tip'),
+      urgent: document.getElementById('urgent'),
+      versuri: document.getElementById('versuri'),
+      videoclip: document.getElementById('videoclip'),
+      ship: document.getElementById('ship'),
+      total: document.getElementById('total')
+    };
+
+    function calc(){
+      let t = 0;
+      t += parseInt(els.tip.value,10) || 0;
+      if(els.urgent.checked) t += 199;
+      if(els.versuri.checked) t += 99;
+      if(els.videoclip.checked) t += 149;
+      t += parseInt(els.ship.value,10) || 0;
+      els.total.textContent = t.toLocaleString('ro-RO');
+    }
+    ['change','input'].forEach(ev=>{
+      Object.values(els).forEach(el=>{
+        if(el && el.addEventListener) el.addEventListener(ev, calc);
       });
-    })();
-
-    // CALCULATOR DE PREȚ (live)
-    (function(){
-      const BASE = 100;
-      const totalEl = document.getElementById('calc-total');
-      const form = document.getElementById('form-ro');
-      const opts = Array.from(document.querySelectorAll('.opt'));
-      const ships = Array.from(document.querySelectorAll('.ship'));
-      const btnPayPal = document.getElementById('btn-paypal');
-      const btnRevolut = document.getElementById('btn-revolut');
-      const hiddenTotal = document.getElementById('total_hidden');
-      const hiddenOpts  = document.getElementById('opts_hidden');
-      const hiddenShip  = document.getElementById('ship_hidden');
-
-      function calc(){
-        let total = BASE;
-        const chosen = [];
-        opts.forEach(ch => {
-          if(ch.checked){ total += Number(ch.value||0); chosen.push(ch.dataset.name); }
-        });
-        let shipName = 'Standard (3–5 zile)', shipCost = 0;
-        ships.forEach(r=>{
-          if(r.checked){ shipName = r.dataset.name; shipCost = Number(r.value||0); }
-        });
-        total += shipCost;
-
-        totalEl.textContent = total;
-        hiddenTotal.value = total;
-        hiddenOpts.value  = chosen.join(', ');
-        hiddenShip.value  = shipName;
-
-        // actualizează sumele în linkuri (PayPal & Revolut)
-        btnPayPal.href = `https://paypal.me/Serviciidigitale/${total}`;
-        btnRevolut.href = `https://revolut.me/razvan3ltl/${total}`;
-      }
-      opts.forEach(ch => ch.addEventListener('change', calc));
-      ships.forEach(r => r.addEventListener('change', calc));
-      calc(); // init
-
-      // submit -> trimite la Formspree și derulează la plată
-      const status = document.getElementById('ro-status');
-      const pay = document.getElementById('plata');
-      form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        status.classList.remove('hidden');
-        status.textContent = 'Se trimit detaliile…';
-        try{
-          const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-          if(res.ok){
-            status.textContent = 'Gata! Detaliile au fost trimise. Poți face plata ↓';
-            pay.scrollIntoView({behavior:'smooth'});
-          } else {
-            status.textContent = 'A apărut o problemă. Încearcă din nou sau scrie pe WhatsApp.';
-          }
-        } catch(err){ status.textContent = 'Eroare de rețea. Încearcă din nou.'; }
-      });
-    })();
+    });
+    calc();
   </script>
 </body>
 </html>
