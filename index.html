@@ -1,361 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ro">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Melodia Unică — Melodii la comandă 100% personalizate</title>
-  <meta name="description" content="Spune-mi povestea, eu o transform în muzică. Melodii la comandă 100% personalizate — perfecte pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video." />
-  <!-- Favicon = emblema -->
-  <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
+  <meta name="description" content="Spune-mi emoția ta, eu o transform în muzică. Melodii la comandă 100% personalizate.">
+  <link rel="icon" href="assets/emblema.png">
   <style>
     :root{
-      --brand:#6e2cff;      /* mov elegant pentru accente */
-      --ink:#0f172a;        /* text închis */
-      --paper:#ffffff;      /* suprafețe */
-      --veil:rgba(15,23,42,.45); /* overlay peste imagini */
-      --glass:rgba(255,255,255,.22);
-      --ring:rgba(110,44,255,.35);
-      --ok:#0ea5e9;
-      --ok-2:#22c55e;
-      --warn:#f59e0b;
+      --brand:#6b35ff; --brand2:#a36bff;
+      --ink:#0f172a; --muted:#475569; --panel:rgba(255,255,255,.84);
+      --ring:rgba(107,53,255,.2); --bg:#f7f7fb;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
-      color:var(--ink);
-      background:#000;
-    }
+    html,body{margin:0;height:100%;font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+    a{text-decoration:none;color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
 
-    /* ===== NAVBAR ===== */
-    .nav{
-      position:fixed; inset:12px 12px auto 12px;
-      z-index:20;
-      display:flex; align-items:center; gap:12px;
-      padding:10px 12px;
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width:0;
-      padding-right:8px;
-    }
-    .brand img{
-      width:44px; height:44px; border-radius:10px; flex:0 0 auto;
-      box-shadow:0 4px 14px rgba(0,0,0,.35);
-    }
-    .brand .t1{
-      font-weight:800; font-size:22px; letter-spacing:.2px; white-space:nowrap;
-    }
-    .pill{
-      appearance:none; border:none; cursor:pointer;
-      padding:10px 18px; border-radius:999px;
-      font-weight:700; font-size:16px; white-space:nowrap;
-      transition:transform .05s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .pill:active{ transform:translateY(1px) }
-    .pill.primary{ background:var(--brand); color:#fff; box-shadow:0 8px 18px var(--ring) }
-    .pill.soft{ background:rgba(255,255,255,.85); color:#0f172a; }
-    .icons{ display:flex; gap:8px; margin-left:6px}
-    .icon-btn{
-      width:40px;height:40px;border-radius:12px;border:none;cursor:pointer;
-      background:rgba(255,255,255,.9); display:grid; place-items:center;
-      box-shadow:0 6px 14px rgba(0,0,0,.15);
-      transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .icon-btn:hover{background:#fff}
-    .icon-btn:active{transform:translateY(1px)}
-    .icon{ width:22px; height:22px; display:block }
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.78));backdrop-filter:saturate(1.2) blur(10px);box-shadow:0 8px 24px rgba(0,0,0,.08);margin:14px auto;border-radius:16px;width:min(1100px,calc(100% - 16px))}
+    .nav-in{display:flex;align-items:center;gap:14px;padding:10px 12px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.35rem}
+    .brand img{width:42px;height:42px;object-fit:contain;display:block}
+    .nav-gap{flex:1}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;font-weight:700;border-radius:14px;padding:12px 20px}
+    .btn.primary{background:var(--brand);color:#fff;box-shadow:0 6px 18px rgba(107,53,255,.35)}
+    .btn.ghost{background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.06)}
+    .ic{width:22px;height:22px;display:inline-grid;place-items:center}
 
-    /* ===== SLIDESHOW ===== */
-    .slides{
-      position:fixed; inset:0; z-index:-1; overflow:hidden;
-      background:#000;
-    }
-    .slides::after{
-      content:""; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(0,0,0,0) 20%, rgba(0,0,0,.45) 80%);
-      pointer-events:none;
-    }
-    .slide{
-      position:absolute; inset:0; background-size:cover; background-position:center;
-      opacity:0; transition: opacity 1.2s ease;
-      transform:scale(1.02);
-    }
-    .slide.show{ opacity:1 }
+    /* HERO + slider */
+    .hero{position:relative;min-height:88vh;display:grid;place-items:center;overflow:hidden;border-radius:24px;margin:14px auto;width:min(1100px,calc(100% - 16px));box-shadow:0 20px 45px rgba(0,0,0,.12)}
+    .slides{position:absolute;inset:0;z-index:0}
+    .slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s ease;filter:contrast(1.03) saturate(1.08) brightness(.95)}
+    .slides img.show{opacity:1}
+    .hero .panel{position:relative;z-index:1;width:min(860px,92%);background:var(--panel);border-radius:24px;padding:26px 24px 28px;box-shadow:0 10px 30px rgba(15,23,42,.12);border:1px solid rgba(15,23,42,.06)}
+    .kicker{font-weight:900;font-size:clamp(26px,5vw,56px);line-height:1.04}
+    .kicker b{color:var(--brand)}
+    .sub{margin-top:14px;color:var(--muted);font-size:clamp(16px,2.7vw,20px);line-height:1.6}
+    .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+    .btn.lg{padding:15px 22px;border-radius:16px;font-size:1.05rem}
 
-    /* ===== HERO ===== */
-    .hero{
-      min-height:88svh; display:grid; place-items:center; padding:120px 16px 60px;
-    }
-    .hero-card{
-      width:min(1100px, 96vw);
-      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.75));
-      border-radius:32px;
-      padding: clamp(20px, 6vw, 48px);
-      box-shadow:0 30px 60px rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,.5);
-    }
-    .eyebrow{ font-weight:900; color:#0b1220; font-size: clamp(36px, 6.2vw, 72px); line-height:1.04; letter-spacing:.2px; margin:0 0 18px }
-    .eyebrow .accent{ color:var(--brand); text-shadow:0 2px 0 rgba(110,44,255,.08) }
-    .lead{ font-size: clamp(16px, 2.6vw, 22px); line-height:1.6; color:#0f172acb; margin: 0 0 26px }
-    .cta-row{ display:flex; flex-wrap:wrap; gap:14px }
-    .cta-row .pill{ font-size:18px; padding:12px 18px }
-
-    /* ===== CALCULATOR ===== */
-    .section{
-      padding: 28px 16px 90px; background:linear-gradient(180deg, rgba(255,255,255,.9), #fff);
-    }
-    .wrap{ width:min(1100px, 96vw); margin-inline:auto }
-    h2{ font-size: clamp(28px, 4.8vw, 42px); margin:0 0 18px }
-    .grid{
-      display:grid; gap:18px;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
-    .card{
-      background:#fff; border-radius:22px; padding:18px 18px;
-      border:1px solid rgba(15,23,42,.06);
-      box-shadow:0 10px 24px rgba(2,8,23,.05);
-    }
-    .card h3{ margin:4px 0 10px; font-size:18px }
-    .opt{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 0; border-bottom:1px dashed rgba(15,23,42,.08)}
-    .opt:last-child{ border-bottom:none }
-    .opt label{ font-weight:600 }
-    select, input[type="checkbox"]{
-      font: inherit; padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,42,.18); background:#fff;
-    }
-    .total{
-      font-size: clamp(22px, 4vw, 32px); font-weight:900; margin: 6px 0 12px
-    }
-    .hint{ color:#475569; font-size:14px }
-    .ok{ color:var(--ok-2) }
-
-    /* ===== FOOTER ===== */
-    footer{
-      padding:26px 16px 60px; color:#e2e8f0;
-      background:linear-gradient(180deg, #0b1220, #0b1220 60%, #05070f);
-    }
-    .foot{ width:min(1100px, 96vw); margin-inline:auto; display:flex; flex-wrap:wrap; align-items:center; gap:14px; justify-content:space-between}
-    .badge{ display:flex; align-items:center; gap:10px; color:#cbd5e1; }
-    .badge img{ width:28px; height:28px; border-radius:6px }
-    .foot small{ color:#94a3b8 }
-    @media (max-width:720px){
-      .brand .t1{ font-size:18px }
-      .nav{ inset:8px 8px auto 8px; }
-    }
+    /* SECTIONS */
+    section{margin:48px 0}
+    .card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 8px 28px rgba(0,0,0,.08);border:1px solid rgba(15,23,42,.06)}
+    .grid{display:grid;gap:18px}
+    @media(min-width:900px){.grid{grid-template-columns:1.4fr .9fr}}
+    label{display:block;font-weight:700;margin-bottom:8px}
+    select,input[type="number"],.opt{width:100%;padding:12px 12px;border:1px solid rgba(15,23,42,.12);border-radius:12px;background:#fff;font-size:16px;outline:none}
+    select:focus,input:focus{box-shadow:0 0 0 6px var(--ring);border-color:var(--brand)}
+    .opt{display:flex;align-items:center;gap:10px}
+    .opt input{width:auto}
+    .total{font-weight:900;font-size:28px;margin:10px 0 0}
+    .muted{color:var(--muted)}
+    .pill{display:inline-block;background:rgba(107,53,255,.1);color:var(--brand);padding:6px 10px;border-radius:999px;font-weight:700;font-size:.9rem}
+    .footer{margin:48px auto 64px;width:min(1100px,calc(100% - 16px));text-align:center;color:var(--muted)}
   </style>
 </head>
 <body>
 
-  <!-- ===== FIXED NAVBAR ===== -->
+  <!-- NAV -->
   <nav class="nav">
-    <a class="brand" href="#top" aria-label="Melodia Unică">
-      <img alt="Emblema Melodia Unică" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
-      <div class="t1">Melodia Unica</div>
-    </a>
-    <a class="pill primary" href="#comanda">Comandă</a>
-    <a class="pill soft" href="#plata">Plată</a>
-    <div class="icons" aria-label="Rețele & contact">
-      <a class="icon-btn" href="https://wa.me/40757641284" target="_blank" rel="noopener" title="WhatsApp">
-        <img class="icon" alt="WhatsApp" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
+    <div class="nav-in">
+      <a class="brand" href="#top" aria-label="Melodia Unică">
+        <!-- fallback: încearcă .png, dacă nu, trece pe .jpg -->
+        <img src="assets/emblema.png" alt="Emblema Melodia Unică" onerror="this.onerror=null;this.src='assets/emblema.jpg'">
+        <span>Melodia Unică</span>
       </a>
-      <a class="icon-btn" href="https://tiktok.com/@melodia.unica" target="_blank" rel="noopener" title="TikTok">
-        <img class="icon" alt="TikTok" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg">
-      </a>
-      <a class="icon-btn" href="https://www.facebook.com/profile.php?id=61582511259127" target="_blank" rel="noopener" title="Facebook">
-        <img class="icon" alt="Facebook" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg">
-      </a>
-      <a class="icon-btn" href="https://instagram.com/melodia.unica" target="_blank" rel="noopener" title="Instagram">
-        <img class="icon" alt="Instagram" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg">
-      </a>
-      <a class="icon-btn" href="https://melodiaunica.ro" target="_blank" rel="noopener" title="Site">
-        <img class="icon" alt="Link" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/link.svg">
-      </a>
+      <div class="nav-gap"></div>
+      <a href="#comanda" class="btn primary">Comandă</a>
+      <a href="#plata" class="btn ghost">Plată</a>
+      <a class="btn ghost ic" href="https://wa.me/40757641284" aria-label="WhatsApp">💬</a>
+      <a class="btn ghost ic" href="https://www.tiktok.com/@melodia.unica" aria-label="TikTok">🎵</a>
+      <a class="btn ghost ic" href="https://facebook.com" aria-label="Facebook">📘</a>
+      <a class="btn ghost ic" href="https://instagram.com" aria-label="Instagram">📸</a>
     </div>
   </nav>
 
-  <!-- ===== BACKGROUND SLIDESHOW (natură + muzică) ===== -->
-  <div class="slides" aria-hidden="true">
-    <div class="slide show" style="background-image:url('https://images.unsplash.com/photo-1497339100210-9e87df79c218?q=80&w=1600&auto=format&fit=crop');"></div> <!-- mixer -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- notițe muzică -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?q=80&w=1600&auto=format&fit=crop');"></div> <!-- pădure luminată -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1600&auto=format&fit=crop');"></div> <!-- căști -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1600&auto=format&fit=crop');"></div> <!-- munți apus -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1444824775686-4185f172c44b?q=80&w=1600&auto=format&fit=crop');"></div> <!-- valuri -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1520523839897-bd0b52f945a7?q=80&w=1600&auto=format&fit=crop');"></div> <!-- chitară -->
-    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1600&auto=format&fit=crop');"></div> <!-- cer cu stele -->
-  </div>
-
-  <!-- ===== HERO ===== -->
+  <!-- HERO -->
   <header id="top" class="hero">
-    <div class="hero-card">
-      <h1 class="eyebrow">Melodii la <span class="accent">comandă</span> <span class="accent">100%</span> personalizate</h1>
-      <p class="lead">Spune-mi povestea, eu o transform în muzică. Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
+    <div class="slides" id="slides">
+      <img src="assets/bg1.jpg" class="show" alt="">
+      <img src="assets/bg2.jpg" alt=""><img src="assets/bg3.jpg" alt=""><img src="assets/bg4.jpg" alt="">
+      <img src="assets/bg5.jpg" alt=""><img src="assets/bg6.jpg" alt=""><img src="assets/bg7.jpg" alt=""><img src="assets/bg8.jpg" alt="">
+    </div>
+    <div class="panel">
+      <div class="kicker">Melodii la <b>comandă</b> <b>100%</b> personalizate</div>
+      <p class="sub">Spune-mi povestea, emoția sau ocazia — eu o transform în muzică.
+        Perfect pentru onomastici, aniversări, nunți, propuneri, glume interne și campanii video.</p>
       <div class="cta-row">
-        <a class="pill primary" href="#comanda">Comandă acum</a>
-        <a class="pill soft" href="#mostre">Ascultă mostre</a>
-        <a class="pill soft" href="#plata">Mergi la plată</a>
+        <a href="#comanda" class="btn primary lg">Comandă acum</a>
+        <a href="#mostre" class="btn ghost lg">Ascultă mostre</a>
+        <a href="#plata" class="btn ghost lg">Mergi la plată</a>
       </div>
     </div>
   </header>
 
-  <!-- ===== CALCULATOR DE PREȚ ===== -->
-  <section id="comanda" class="section">
-    <div class="wrap">
-      <h2>Configurează-ți melodia</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Tip melodie</h3>
-          <div class="opt">
-            <label for="tip">Alege pachet</label>
-            <select id="tip">
-              <option value="499">Standard — 499 RON</option>
-              <option value="799" selected>Premium — 799 RON</option>
-              <option value="1199">Deluxe (orkestrație) — 1199 RON</option>
-            </select>
-          </div>
-          <div class="opt">
-            <label for="urgent">Livrare 24h (+199 RON)</label>
-            <input id="urgent" type="checkbox" />
-          </div>
-          <div class="opt">
-            <label for="versuri">Versuri extinse (+99 RON)</label>
-            <input id="versuri" type="checkbox" />
-          </div>
-          <div class="opt">
-            <label for="videoclip">Videoclip simplu (+149 RON)</label>
-            <input id="videoclip" type="checkbox" />
-          </div>
+  <!-- CONFIGURATOR -->
+  <main class="wrap">
+    <section id="comanda" class="grid">
+      <div class="card">
+        <h2>Configurează-ți melodia</h2>
+        <p class="muted">Alege pachetul, opțiunile și livrarea. Totalul se calculează automat.</p>
+
+        <div style="margin-top:10px">
+          <label for="tip">Tip melodie</label>
+          <select id="tip">
+            <option value="95" selected>Standard — 95 RON</option>
+            <option value="195">Premium — 195 RON</option>
+            <option value="295">Deluxe (orkestrație) — 295 RON</option>
+          </select>
         </div>
 
-        <div class="card">
-          <h3>Expediere & livrare</h3>
-          <div class="opt">
-            <label for="ship">Metodă livrare</label>
-            <select id="ship">
-              <option value="0">Digital (email/WhatsApp) — 0 RON</option>
-              <option value="39">USB personalizat — 39 RON</option>
-              <option value="59">USB + pachet cadou — 59 RON</option>
-            </select>
-          </div>
-          <p class="hint">După plasare vei putea încărca detaliile (poveste, ton, dedicatie). Confirmarea vine pe WhatsApp/Email.</p>
+        <div style="margin-top:14px">
+          <label>Opțiuni extra</label>
+          <div class="opt"><input type="checkbox" id="text" value="50"><span>Scriere versuri personalizate <span class="pill">+50 RON</span></span></div>
+          <div class="opt"><input type="checkbox" id="video" value="80"><span>Videoclip simplu (foto + text) <span class="pill">+80 RON</span></span></div>
+          <div class="opt"><input type="checkbox" id="urgent" value="120"><span>Livrare în 24–48h <span class="pill">+120 RON</span></span></div>
         </div>
 
-        <div class="card">
-          <h3>Total comandă</h3>
-          <div class="total"><span id="total">0</span> RON</div>
-          <p class="hint">Prețul se actualizează automat. <span class="ok">Nu există costuri ascunse.</span></p>
-          <div class="cta-row">
-            <a class="pill primary" href="#plata">Mergi la plată</a>
-            <a class="pill soft" href="https://wa.me/40757641284" target="_blank" rel="noopener">Întreabă pe WhatsApp</a>
-          </div>
+        <div style="margin-top:14px">
+          <label for="livrare">Livrare</label>
+          <select id="livrare">
+            <option value="0" selected>Standard (2–5 zile) — 0 RON</option>
+            <option value="50">Rapid (1–2 zile) — 50 RON</option>
+            <option value="120">Urgent (24–48h) — 120 RON</option>
+          </select>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ===== MOSTRE (placeholder) ===== -->
-  <section id="mostre" class="section" style="padding-top:0">
-    <div class="wrap">
-      <h2>Mostre (teaser)</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Romantic — baladă</h3>
-          <audio controls preload="none" style="width:100%">
-            <source src="" type="audio/mpeg" />
-          </audio>
-          <p class="hint">Încarcă aici demo-ul tău când dorești (MP3).</p>
+      <div class="card">
+        <h3>Total comandă</h3>
+        <p class="muted" id="recap">Standard — 95 RON</p>
+        <div class="total" id="total">95 RON</div>
+        <div class="cta-row" style="margin-top:16px">
+          <a href="https://wa.me/40757641284?text=Bună!%20Vreau%20o%20melodie%20personalizată."
+             class="btn primary lg" target="_blank" rel="noopener">Trimite pe WhatsApp</a>
+          <a href="#plata" class="btn ghost lg">Continuă la plată</a>
         </div>
-        <div class="card">
-          <h3>Ușor — pop acustic</h3>
-          <audio controls preload="none" style="width:100%">
-            <source src="" type="audio/mpeg" />
-          </audio>
-        </div>
-        <div class="card">
-          <h3>Glume internă — fun</h3>
-          <audio controls preload="none" style="width:100%">
-            <source src="" type="audio/mpeg" />
-          </audio>
-        </div>
+        <p class="muted" style="margin-top:10px">Plata se face după confirmarea detaliilor. Primești link securizat de plată.</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== PLATĂ ===== -->
-  <section id="plata" class="section" style="padding-top:0">
-    <div class="wrap">
-      <h2>Plată & checkout</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Plată online</h3>
-          <p class="hint">Apasă pe butonul de mai jos pentru a finaliza comanda în pagina de plată.</p>
-          <a class="pill primary" href="https://melodiaunica.ro/plata" target="_blank" rel="noopener">Deschide pagina de plată</a>
-        </div>
-        <div class="card">
-          <h3>Contact rapid</h3>
-          <div class="cta-row">
-            <a class="pill soft" href="mailto:melodiipersonalizate.official@gmail.com">Email</a>
-            <a class="pill soft" href="https://wa.me/40757641284" target="_blank" rel="noopener">WhatsApp</a>
-          </div>
-          <p class="hint">RO / DE / internațional — răspund rapid.</p>
-        </div>
+    <!-- MOSTRE -->
+    <section id="mostre" class="card">
+      <h2>Mostre audio</h2>
+      <p class="muted">Poți înlocui linkurile .mp3 cu piesele tale.</p>
+      <div style="display:grid;gap:12px;margin-top:10px">
+        <audio controls src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Classical_Sampler/Kevin_MacLeod_-_Canon_in_D_Major.mp3"></audio>
+        <audio controls src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Rock_Sampler/Kevin_MacLeod_-_Carefree.mp3"></audio>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <div class="foot">
-      <div class="badge">
-        <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAYACAYAAADogjqqAAD+cGNhQlgAAP5wanVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQ ..." />
-        <strong>Melodia Unică</strong>
-      </div>
-      <small>© <span id="y"></span> Melodia Unică — Toate drepturile rezervate.</small>
-    </div>
+    <!-- PLATĂ -->
+    <section id="plata" class="card">
+      <h2>Plată</h2>
+      <p class="muted">După confirmarea comenzii, vei primi linkul de plată (card, Apple/Google Pay). Dacă ai deja un link intern, îl poți deschide mai jos.</p>
+      <a class="btn primary lg" href="https://melodiaunica.ro/plata" target="_blank" rel="noopener">Deschide pagina de plată</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="yr"></span> Melodia Unică ·
+    <a href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a>
   </footer>
 
   <script>
-    // ===== YEAR =====
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // an curent
+    document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // ===== SLIDESHOW =====
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    let idx = 0;
-    setInterval(() => {
-      slides[idx].classList.remove('show');
-      idx = (idx + 1) % slides.length;
-      slides[idx].classList.add('show');
-    }, 6000);
+    // slider 8 imagini
+    (function(){
+      const nodes = Array.from(document.querySelectorAll('#slides img'));
+      let i=0;
+      setInterval(()=>{
+        nodes[i].classList.remove('show');
+        i = (i+1) % nodes.length;
+        nodes[i].classList.add('show');
+      }, 4500);
+    })();
 
-    // ===== CALCULATOR =====
-    const els = {
+    // configurator total
+    const el = {
       tip: document.getElementById('tip'),
+      text: document.getElementById('text'),
+      video: document.getElementById('video'),
       urgent: document.getElementById('urgent'),
-      versuri: document.getElementById('versuri'),
-      videoclip: document.getElementById('videoclip'),
-      ship: document.getElementById('ship'),
-      total: document.getElementById('total')
+      livrare: document.getElementById('livrare'),
+      total: document.getElementById('total'),
+      recap: document.getElementById('recap')
     };
-
+    function n(v){return Number(v)||0}
     function calc(){
-      let t = 0;
-      t += parseInt(els.tip.value,10) || 0;
-      if(els.urgent.checked) t += 199;
-      if(els.versuri.checked) t += 99;
-      if(els.videoclip.checked) t += 149;
-      t += parseInt(els.ship.value,10) || 0;
-      els.total.textContent = t.toLocaleString('ro-RO');
+      const base = n(el.tip.value);
+      const extras = (el.text.checked?n(el.text.value):0)
+                    +(el.video.checked?n(el.video.value):0)
+                    +(el.urgent.checked?n(el.urgent.value):0);
+      const ship = n(el.livrare.value);
+      const sum = base + extras + ship;
+      // recap
+      const tipTxt = el.tip.options[el.tip.selectedIndex].text;
+      const parts=[];
+      if(el.text.checked) parts.push('Versuri +50');
+      if(el.video.checked) parts.push('Video +80');
+      if(el.urgent.checked) parts.push('24–48h +120');
+      const livTxt = el.livrare.options[el.livrare.selectedIndex].text;
+      el.recap.textContent = `${tipTxt}${parts.length?' · '+parts.join(' · '):''} · ${livTxt}`;
+      el.total.textContent = sum.toFixed(0)+' RON';
     }
     ['change','input'].forEach(ev=>{
-      Object.values(els).forEach(el=>{
-        if(el && el.addEventListener) el.addEventListener(ev, calc);
-      });
+      ['tip','text','video','urgent','livrare'].forEach(id=>el[id].addEventListener(ev,calc));
     });
     calc();
   </script>
