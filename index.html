@@ -4,7 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png?v=1" />
+  <!-- Favicon = emblema ta -->
+  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -34,7 +35,7 @@
     .btn-primary:hover { opacity:.95; }
     .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
     .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
-    .logo-crest { height: 32px; width:auto; object-fit:contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.18)); }
+    .logo-crest { height: 128px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
   </style>
 </head>
@@ -56,7 +57,7 @@
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png?v=1" alt="Melodia Unica" class="logo-crest" />
+        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png" alt="Melodia Unica" class="logo-crest" />
         <span>Melodia Unica</span>
       </a>
 
@@ -373,7 +374,7 @@
       });
     })();
 
-    // LOGO: ascunde dacă fișierul lipsește (fără text suplimentar)
+    // LOGO: ascunde dacă fișierul lipsește
     (function(){
       const img = document.getElementById('site-logo');
       if(!img) return;
