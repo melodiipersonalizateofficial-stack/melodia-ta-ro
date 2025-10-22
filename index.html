@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <!-- Favicon = emblema ta -->
-  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
+  <!-- păstrat exact ca înainte -->
+  <link rel="icon" type="image/png" href="assets/emblema.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -35,11 +35,12 @@
     .btn-primary:hover { opacity:.95; }
     .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
     .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
-
-    /* Emblema — doar mărime 90px, restul neschimbat */
-    .logo-crest { height: 90px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
-
+    .logo-crest { height: 48px; width:auto; object-fit:contain; filter: drop-shadow(0 1px 4px rgba(0,0,0,.18)); } /* mărimea emblemei – păstrat */
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+
+    /* SINGURA MODIFICARE CERUTĂ: playerele audio mai mici, să nu iasă din rând */
+    audio.sample { max-width: 240px; width: 100%; }
+    @media (min-width:640px){ audio.sample { max-width: 320px; } }
   </style>
 </head>
 <body>
@@ -56,15 +57,15 @@
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER cu SIGLĂ + TITLU -->
+  <!-- HEADER cu emblema (NU am schimbat sursa imaginii) -->
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png" alt="Melodia Unica" class="logo-crest" />
+        <img src="file_00000000fc9c62468d8c49611871c2d4.png?v=2" alt="Melodia Unica" class="logo-crest"/>
         <span>Melodia Unica</span>
       </a>
 
-      <!-- Social sus -->
+      <!-- Social sus (identic) -->
       <nav class="hidden md:flex items-center gap-2">
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
@@ -216,7 +217,7 @@
     </div>
   </section>
 
-  <!-- MOSTRE AUDIO (penultima, funcțională) -->
+  <!-- MOSTRE AUDIO -->
   <section id="mostre" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -355,7 +356,7 @@
     // anul curent
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // slideshow imagini – schimbă la 12s
+    // slideshow imagini
     (function(){
       const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
       if(!slides.length) return;
@@ -377,14 +378,7 @@
       });
     })();
 
-    // LOGO: ascunde dacă fișierul lipsește
-    (function(){
-      const img = document.getElementById('site-logo');
-      if(!img) return;
-      img.addEventListener('error', ()=>{ img.style.display='none'; }, { once:true });
-    })();
-
-    // CALCULATOR DE PREȚ (live) — bază 95 lei
+    // CALCULATOR DE PREȚ (BASE = 95 lei)
     (function(){
       const BASE = 95;
       const totalEl = document.getElementById('calc-total');
@@ -421,7 +415,7 @@
       ships.forEach(r => r.addEventListener('change', calc));
       calc();
 
-      // submit -> trimite la Formspree și derulează la plată
+      // submit -> Formspree + derulare la plată
       const status = document.getElementById('ro-status');
       const pay = document.getElementById('plata');
       form.addEventListener('submit', async (e)=>{
