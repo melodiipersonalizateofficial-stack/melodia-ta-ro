@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
-  <!-- Favicon din emblemă (data URL) -->
-  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPAAAADwCAYAAABlq8L7AAA... (scurtat) ..." />
+  <!-- favicon: nu scrie „Emblema”; dacă fișierul nu există, doar nu apare faviconul -->
+  <link rel="icon" type="image/png" href="assets/emblema.png?v=3" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -14,16 +14,19 @@
     :root{
       --panel-bg: rgba(255,255,255,.42);
       --panel-brd: rgba(0,0,0,.06);
-      --scrim: rgba(255,255,255,.08);
+      --scrim: rgba(255,255,255,.08); /* temă luminoasă */
       --text-stroke: 1px rgba(255,255,255,.35);
     }
     html { scroll-behavior: smooth; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
     .container { max-width: 1120px; }
+
+    /* Slideshow global */
     #bgshow { position:fixed; inset:0; z-index:-2; }
     #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
     #bgshow .slide.active { opacity:1; }
     #bg-scrim { position:fixed; inset:0; z-index:-1; background: var(--scrim); backdrop-filter: saturate(120%) blur(1px); }
+
     .panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.10); backdrop-filter: blur(4px); }
     h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgba(255,255,255,.25); }
     .hdr { background: rgba(255,255,255,.75); backdrop-filter: blur(8px); border-bottom: 1px solid var(--panel-brd); }
@@ -37,7 +40,7 @@
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW GLOBAL (exact ca în varianta ta) -->
+  <!-- SLIDESHOW GLOBAL (8 imagini, natură & muzică) -->
   <div id="bgshow" aria-hidden="true">
     <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
@@ -50,15 +53,12 @@
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER cu EMBLEMA (data URL – NU se mai rupe) -->
+  <!-- HEADER cu SIGLĂ + TITLU (fără textul „Emblema”) -->
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
-        <img
-          class="logo-crest"
-          alt="Emblema Melodia Unica"
-          src="data:image/png;base64,{{EMBLEMA_BASE64_H160}}"
-        />
+        <!-- DOAR poza (nu apare cuvântul „Emblema” nici dacă imaginea lipsește) -->
+        <img id="site-logo" src="assets/emblema.png?v=3" alt="Melodia Unica" class="logo-crest" />
         <span>Melodia Unica</span>
       </a>
 
@@ -77,7 +77,7 @@
     </div>
   </header>
 
-  <!-- HERO (nemodificat) -->
+  <!-- HERO -->
   <section id="top" class="py-14 md:py-20">
     <div class="container mx-auto px-4">
       <div class="panel p-8 md:p-10">
@@ -88,6 +88,7 @@
           <a href="#mostre" class="btn btn-ghost">Ascultă mostre</a>
           <a href="#plata" class="btn btn-ghost">Mergi la plată</a>
         </div>
+        <!-- Social pe mobil -->
         <div class="mt-4 flex flex-wrap gap-2 md:hidden">
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
           <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
@@ -213,7 +214,7 @@
     </div>
   </section>
 
-  <!-- MOSTRE AUDIO (nemodificat) -->
+  <!-- MOSTRE AUDIO (penultima, funcțională) -->
   <section id="mostre" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -273,7 +274,7 @@
     </div>
   </section>
 
-  <!-- PREȚURI (doar 95 în loc de 100) -->
+  <!-- PREȚURI -->
   <section id="pricing" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -305,7 +306,7 @@
     </div>
   </section>
 
-  <!-- CONTACT (nemodificat) -->
+  <!-- CONTACT -->
   <section id="contact" class="pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -347,10 +348,12 @@
     <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Unica. Toate drepturile rezervate.</div>
   </footer>
 
-  <!-- JS (nemodificat, doar BASE=95) -->
+  <!-- JS -->
   <script>
+    // anul curent
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // slideshow imagini – schimbă la 12s
     (function(){
       const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
       if(!slides.length) return;
@@ -362,6 +365,7 @@
       }, 12000);
     })();
 
+    // doar un audio cântă la un moment dat (mostre)
     (function () {
       const players = Array.from(document.querySelectorAll('audio.sample'));
       players.forEach(p => {
@@ -371,6 +375,30 @@
       });
     })();
 
+    // LOGO fallback: dacă assets/emblema.png nu există, încearcă alte nume comune
+    (function(){
+      const img = document.getElementById('site-logo');
+      if(!img) return;
+      const candidates = [
+        'assets/emblema.png?v=3',
+        'assets/logo-emblema.png?v=3',
+        'assets/logo.png?v=3',
+        'assets/Emblema.png?v=3'
+      ];
+      let idx = 0;
+      function tryNext(){
+        if(idx >= candidates.length){ img.style.display='none'; return; }
+        const test = new Image();
+        const url = candidates[idx++];
+        test.onload = ()=>{ img.src = url; };
+        test.onerror = tryNext;
+        test.src = url;
+      }
+      // dacă prima sursă e ruptă, pornește fallback-ul
+      img.addEventListener('error', tryNext, { once:true });
+    })();
+
+    // CALCULATOR DE PREȚ (live) — bază 95 lei
     (function(){
       const BASE = 95;
       const totalEl = document.getElementById('calc-total');
@@ -400,13 +428,15 @@
         hiddenOpts.value  = chosen.join(', ');
         hiddenShip.value  = shipName;
 
+        // actualizează sumele în linkuri (PayPal & Revolut)
         btnPayPal.href = `https://paypal.me/Serviciidigitale/${total}`;
         btnRevolut.href = `https://revolut.me/razvan3ltl/${total}`;
       }
       opts.forEach(ch => ch.addEventListener('change', calc));
       ships.forEach(r => r.addEventListener('change', calc));
-      calc();
+      calc(); // init
 
+      // submit -> trimite la Formspree și derulează la plată
       const status = document.getElementById('ro-status');
       const pay = document.getElementById('plata');
       form.addEventListener('submit', async (e)=>{
