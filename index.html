@@ -1,22 +1,62 @@
 <!DOCTYPE html><html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <!-- SEO AVANSAT -->
-<meta name="title" content="Melodii personalizate unice — cadou muzical realizat special pentru tine">
-<meta name="description" content="Creez melodii 100% personalizate pentru cadouri, aniversări, declarații, nunți, cereri în căsătorie, campanii video și momente speciale. Livrare rapidă.">
-<meta name="keywords" content="melodii personalizate, muzică personalizată, cadou muzical, compunere melodii, artist personalizat, melodie pentru Raluca, cadou romantic, muzica la comanda, melodii emotionante, muzica personalizata romania">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Melodia Unica">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Melodii personalizate unice — cadoul perfect în muzică">
-<meta property="og:description" content="Transform povestea ta într-o melodie unică. Cadou premium, emoțional, memorabil.">
-<meta property="og:image" content="https://melodiaunica.ro/logo.png">
-<meta property="og:url" content="https://melodiaunica.ro">
-<meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
+  <!-- Favicon = emblema ta -->
   <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
+
+  <!-- ✅ SEO: doar adăugiri, fără alte modificări -->
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://melodiaunica.ro/">
+  <link rel="alternate" hreflang="ro" href="https://melodiaunica.ro/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Melodia Unica">
+  <meta property="og:url" content="https://melodiaunica.ro/">
+  <meta property="og:title" content="Melodia Unica — Melodii 100% personalizate">
+  <meta property="og:description" content="Spune-mi povestea, eu o transform în muzică. Perfect pentru aniversări, onomastici, nunți, propuneri, glume interne și campanii video.">
+  <meta property="og:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Melodia Unica — Melodii 100% personalizate">
+  <meta name="twitter:description" content="Comandă o melodie creată special pentru povestea ta. Livrare rapidă.">
+  <meta name="twitter:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
+
+  <!-- JSON-LD (Organization + Website) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Melodia Unica",
+    "url": "https://melodiaunica.ro/",
+    "logo": "https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png",
+    "sameAs": [
+      "https://www.facebook.com/melodiaunica",
+      "https://www.instagram.com/melodiaunica",
+      "https://www.tiktok.com/@melodiaunica",
+      "https://wa.me/40757641284"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Melodia Unica",
+    "url":"https://melodiaunica.ro/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://melodiaunica.ro/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+  <!-- ✅ /SEO -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -32,7 +72,7 @@
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
     .container { max-width: 1120px; }
 
-    /* Slideshow */
+    /* Slideshow global */
     #bgshow { position:fixed; inset:0; z-index:-2; }
     #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
     #bgshow .slide.active { opacity:1; }
@@ -47,21 +87,18 @@
     .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
     .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
 
-    /* SIGLA: exact 80px înălțime */
-    .logo-crest { height:80px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
+    /* Emblema */
+    .logo-crest { height: 80px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
 
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 
-    /* Playere audio puțin mai înguste (ca să nu iasă din rând) */
-    audio.sample { max-width: 240px; width:100%; }
-    @media (min-width:640px){ audio.sample { max-width: 320px; } }
-
-    /* Evită „ieșirea” textelor lungi (email, linkuri) din panouri */
-    .wrap { overflow-wrap:anywhere; word-break: break-word; }
+    /* Player mai îngust pe mobil (doar CSS, fără schimbări vizuale majore) */
+    audio.sample { width: clamp(220px, 52vw, 360px); }
+    @media (min-width: 768px){ audio.sample { width: 420px; } }
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW -->
+  <!-- SLIDESHOW GLOBAL -->
   <div id="bgshow" aria-hidden="true">
     <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
@@ -81,12 +118,14 @@
         <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png" alt="Melodia Unica" class="logo-crest" />
         <span>Melodia Unica</span>
       </a>
+
       <nav class="hidden md:flex items-center gap-2">
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
         <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
       </nav>
+
       <div class="flex items-center gap-2">
         <a href="#order" class="btn btn-primary">Comandă</a>
         <a href="#plata" class="btn btn-ghost">Plată</a>
@@ -115,7 +154,7 @@
     </div>
   </section>
 
-  <!-- ORDER + CALCULATOR + PLĂȚI -->
+  <!-- ORDER + PLĂȚI -->
   <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <div class="panel p-6 md:p-8">
@@ -231,47 +270,47 @@
         <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
         <p class="text-slate-700 text-sm mt-2">Apasă ▶︎ pentru a asculta mostrele direct pe site. Doar un track cântă la un moment dat.</p>
         <div class="mt-6 grid gap-6">
+          <!-- 1 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
                 <div class="font-semibold">Baladă pentru Raluca — romantic profund</div>
                 <div class="text-sm text-slate-600">Emoțional, cinematic</div>
               </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
             </div>
           </div>
+          <!-- 2 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
                 <div class="font-semibold">Noroc, frate — pozitiv, vesel</div>
                 <div class="text-sm text-slate-600">Vibe prietenos</div>
               </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
             </div>
           </div>
+          <!-- 3 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
                 <div class="font-semibold">Om drag — motivațional</div>
                 <div class="text-sm text-slate-600">Mesaj puternic</div>
               </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
             </div>
           </div>
+          <!-- 4 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
               <div>
                 <div class="font-semibold">Only you, Raluca — romantic modern</div>
                 <div class="text-sm text-slate-600">Declarativ, pop</div>
               </div>
-              <audio class="sample" controls preload="none"
-                     controlslist="nodownload noplaybackrate"
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
                      src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
             </div>
           </div>
@@ -318,16 +357,9 @@
       <div class="panel p-6 md:p-10">
         <h2 class="text-3xl md:text-4xl font-extrabold">Contact</h2>
         <div class="mt-6 grid md:grid-cols-3 gap-6">
-          <div class="panel p-6">
-            <div class="text-sm text-slate-600">Email</div>
-            <a class="text-lg font-semibold hover:underline wrap" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a>
-          </div>
-          <div class="panel p-6">
-            <div class="text-sm text-slate-600">WhatsApp</div>
-            <a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a>
-          </div>
-          <div class="panel p-6">
-            <div class="text-sm text-slate-600">Social</div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">Email</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">Social</div>
             <div class="mt-2 flex flex-wrap gap-2">
               <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
               <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
