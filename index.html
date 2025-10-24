@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="ro">
+<!DOCTYPE html><html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Melodia Unica — Melodii 100% personalizate</title>
   <meta name="description" content="Comandă online o melodie personalizată pentru onomastici, aniversări, nunți sau surprize. Plată rapidă (Card/PayPal/Revolut). Livrare 48h opțional." />
+  <meta name="keywords" content="melodii personalizate, melodie cadou, melodia ta, cântec personalizat, melodie la comandă, cadou aniversare, cerere în căsătorie, onomastică, versuri personalizate, muzică pentru iubit, muzică pentru soție, cadou unic, surpriză romantică" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
+
+  <!-- ✅ SEO extra -->
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://melodiaunica.ro/">
   <link rel="alternate" hreflang="ro" href="https://melodiaunica.ro/">
-  <!-- SEO extra -->
-  <meta name="keywords" content="melodii personalizate, melodie cadou, cântec la comandă, muzică dedicată, melodii pentru onomastice, melodii pentru aniversări, melodii pentru nuntă, cadou muzical, melodia ta, cântec personalizat România" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -25,10 +28,7 @@
   <meta name="twitter:description" content="Comandă o melodie creată special pentru povestea ta. Livrare rapidă.">
   <meta name="twitter:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
-
-  <!-- JSON-LD (Organization + Website) -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -58,44 +58,12 @@
   }
   </script>
 
-  <!-- JSON-LD (FAQ pentru SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"În cât timp primesc melodia?",
-        "acceptedAnswer":{"@type":"Answer","text":"Standard 3–5 zile. Opțional Express 48h sau Ultra 24h."}
-      },
-      {
-        "@type":"Question",
-        "name":"Ce primesc la livrare?",
-        "acceptedAnswer":{"@type":"Answer","text":"MP3 320kbps + WAV 24-bit, versuri PDF, copertă JPG și 1–2 revizii (în funcție de pachet)."}
-      },
-      {
-        "@type":"Question",
-        "name":"Cum plătesc?",
-        "acceptedAnswer":{"@type":"Answer","text":"Card (Stripe), PayPal și Revolut. Suma se poate calcula automat din formular."}
-      }
-    ]
-  }
-  </script>
-
-  <!-- Fonts + Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    :root{
-      --panel-bg: rgba(255,255,255,.42);
-      --panel-brd: rgba(0,0,0,.06);
-      --scrim: rgba(255,255,255,.08);
-      --text-stroke: 1px rgba(255,255,255,.35);
-    }
+    :root{ --panel-bg: rgba(255,255,255,.42); --panel-brd: rgba(0,0,0,.06); --scrim: rgba(255,255,255,.08); --text-stroke: 1px rgba(255,255,255,.35); }
     html { scroll-behavior: smooth; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
     .container { max-width: 1120px; }
@@ -115,18 +83,15 @@
     .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
     .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
 
-    /* Emblema */
     .logo-crest { height: 80px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
-
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 
-    /* Player mai îngust pe mobil */
     audio.sample { width: clamp(220px, 52vw, 360px); }
     @media (min-width: 768px){ audio.sample { width: 420px; } }
   </style>
 </head>
 <body>
-  <!-- SLIDESHOW GLOBAL -->
+  <!-- SLIDESHOW -->
   <div id="bgshow" aria-hidden="true">
     <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
     <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
@@ -155,11 +120,11 @@
       </nav>
 
       <div class="flex items-center gap-2">
-        <!-- Selector limbă (nu schimbă structura) -->
-        <div class="hidden md:flex items-center gap-1 mr-2 text-sm">
-          <a class="btn btn-ghost" href="#" aria-current="page">RO</a>
-          <a class="btn btn-ghost" href="en.html">EN</a>
-          <a class="btn btn-ghost" href="de.html">DE</a>
+        <!-- Buton limbă (doar linkuri; paginile EN/DE le facem după) -->
+        <div class="hidden sm:flex items-center text-xs text-slate-700 gap-2 mr-2">
+          <a href="/" class="underline font-semibold">RO</a> |
+          <a href="/en/" class="hover:underline">EN</a> |
+          <a href="/de/" class="hover:underline">DE</a>
         </div>
         <a href="#order" class="btn btn-primary">Comandă</a>
         <a href="#plata" class="btn btn-ghost">Plată</a>
@@ -228,22 +193,10 @@
           </label>
 
           <div class="grid sm:grid-cols-2 gap-3">
-            <label class="chip">
-              <span>Mix & master avansat</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+80 lei <input type="checkbox" class="opt" data-name="Mix&Master" value="80"></span>
-            </label>
-            <label class="chip">
-              <span>Lyrics video 4K</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+70 lei <input type="checkbox" class="opt" data-name="LyricsVideo" value="70"></span>
-            </label>
-            <label class="chip">
-              <span>Licență comercială</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+150 lei <input type="checkbox" class="opt" data-name="LicentaComerciala" value="150"></span>
-            </label>
-            <label class="chip">
-              <span>Exclusivitate</span>
-              <span class="flex items-center gap-2 text-sm text-slate-600">+300 lei <input type="checkbox" class="opt" data-name="Exclusivitate" value="300"></span>
-            </label>
+            <label class="chip"><span>Mix & master avansat</span><span class="flex items-center gap-2 text-sm text-slate-600">+80 lei <input type="checkbox" class="opt" data-name="Mix&Master" value="80"></span></label>
+            <label class="chip"><span>Lyrics video 4K</span><span class="flex items-center gap-2 text-sm text-slate-600">+70 lei <input type="checkbox" class="opt" data-name="LyricsVideo" value="70"></span></label>
+            <label class="chip"><span>Licență comercială</span><span class="flex items-center gap-2 text-sm text-slate-600">+150 lei <input type="checkbox" class="opt" data-name="LicentaComerciala" value="150"></span></label>
+            <label class="chip"><span>Exclusivitate</span><span class="flex items-center gap-2 text-sm text-slate-600">+300 lei <input type="checkbox" class="opt" data-name="Exclusivitate" value="300"></span></label>
           </div>
 
           <div class="grid gap-2">
@@ -267,7 +220,7 @@
               <a id="btn-paypal" href="https://paypal.me/Serviciidigitale/95" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
               <a id="btn-revolut" href="https://revolut.me/razvan3ltl/95" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
             </div>
-            <p class="text-xs text-slate-500">Stripe este LIVE; PayPal/Revolut preiau suma calculată automat.</p>
+            <p class="text-xs text-slate-500">* PayPal/Revolut preiau suma calculată automat. Stripe este setat pe link LIVE.</p>
           </div>
 
           <div class="flex flex-wrap gap-3 items-center">
@@ -286,8 +239,6 @@
           <a href="https://paypal.me/Serviciidigitale" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
           <a href="https://revolut.me/razvan3ltl" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
         </div>
-        <p class="text-xs text-slate-500 mt-3">Stripe este LIVE. Pentru sume variabile, PayPal/Revolut folosesc totalul calculat.</p>
-
         <div class="mt-6">
           <div class="text-sm text-slate-600">Contact rapid</div>
           <div class="mt-2 flex flex-wrap gap-2">
@@ -299,8 +250,8 @@
     </div>
   </section>
 
-  <!-- MOSTRE AUDIO (PĂSTRATE EXACT CUM LE-AI AVUT) -->
-  <section id="mostre" class="pb-16 md:pb-20">
+  <!-- MOSTRE AUDIO -->
+  <section id="mostre" class="pb-10 md:pb-14">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
         <h2 class="text-3xl md:text-4xl font-extrabold">Mostre audio</h2>
@@ -309,61 +260,48 @@
           <!-- 1 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Baladă pentru Raluca — romantic profund</div>
-                <div class="text-sm text-slate-600">Emoțional, cinematic</div>
-              </div>
-              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
+              <div><div class="font-semibold">Baladă pentru Raluca — romantic profund</div><div class="text-sm text-slate-600">Emoțional, cinematic</div></div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate" src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
             </div>
           </div>
           <!-- 2 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Noroc, frate — pozitiv, vesel</div>
-                <div class="text-sm text-slate-600">Vibe prietenos</div>
-              </div>
-              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
+              <div><div class="font-semibold">Noroc, frate — pozitiv, vesel</div><div class="text-sm text-slate-600">Vibe prietenos</div></div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate" src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
             </div>
           </div>
           <!-- 3 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Om drag — motivațional</div>
-                <div class="text-sm text-slate-600">Mesaj puternic</div>
-              </div>
-              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
+              <div><div class="font-semibold">Om drag — motivațional</div><div class="text-sm text-slate-600">Mesaj puternic</div></div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate" src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
             </div>
           </div>
           <!-- 4 -->
           <div class="panel p-4 md:p-6">
             <div class="flex items-center justify-between gap-4">
-              <div>
-                <div class="font-semibold">Only you, Raluca — romantic modern</div>
-                <div class="text-sm text-slate-600">Declarativ, pop</div>
-              </div>
-              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
-                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
+              <div><div class="font-semibold">Only you, Raluca — romantic modern</div><div class="text-sm text-slate-600">Declarativ, pop</div></div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate" src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- TESTIMONIALE (NOU) -->
-        <div id="testimoniale" class="mt-10 grid md:grid-cols-2 gap-6">
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Teodora • Bistrița</div>
-            <p class="mt-2 text-slate-800">„Melodia m-a făcut să plâng și versurile mi-au străpuns până în adâncul sufletului. O piesă foarte emoțională.”</p>
-            <p class="mt-2 text-slate-700 text-sm">Recomand din inimă — a surprins exact povestea noastră.</p>
-          </div>
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Raluca • Client</div>
-            <p class="mt-2 text-slate-800">„Am rămas uimită când am ascultat melodia. Versurile m-au atins în profunzime. O melodie minunată, foarte frumoasă.”</p>
-            <p class="mt-2 text-slate-700 text-sm">Cu siguranță cel mai personal cadou pe care l-am primit.</p>
-          </div>
+  <!-- TESTIMONIALE (nou) -->
+  <section id="testimoniale" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Ce spun clienții</h2>
+        <div class="mt-6 grid gap-4">
+          <blockquote class="panel p-4 md:p-6 text-slate-800">
+            „Melodia m-a făcut să plâng și versurile mi-au străpuns până în adâncul sufletului. O piesă foarte emoțională — am retrăit fiecare emoție până în adâncul sufletului.” — <b>Teodora</b>
+          </blockquote>
+          <blockquote class="panel p-4 md:p-6 text-slate-800">
+            „Am rămas uimită când am ascultat melodia. Versurile m-au atins în adânc — o melodie minunată, foarte frumoasă.” — <b>Raluca</b>
+          </blockquote>
         </div>
       </div>
     </div>
@@ -376,11 +314,7 @@
         <h2 class="text-3xl md:text-4xl font-extrabold">Prețuri — România</h2>
         <p class="text-slate-700 text-sm mt-2">Preț de bază <b>95 lei</b> / melodie + opțiuni (express, comercial, exclusivitate).</p>
         <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Bază</div>
-            <div class="mt-2 text-3xl font-extrabold">95 lei</div>
-            <p class="mt-2 text-slate-700">Melodie personalizată ~60–120 sec. 1 revizie. Livrare 3–5 zile.</p>
-          </div>
+          <div class="panel p-6"><div class="text-sm uppercase tracking-wider text-slate-600">Bază</div><div class="mt-2 text-3xl font-extrabold">95 lei</div><p class="mt-2 text-slate-700">Melodie personalizată ~60–120 sec. 1 revizie. Livrare 3–5 zile.</p></div>
           <div class="panel p-6 border-2 border-violet-300 bg-white/85">
             <div class="text-sm uppercase tracking-wider text-violet-700">Opțiuni populare</div>
             <ul class="mt-4 space-y-2 text-sm text-slate-800">
@@ -391,11 +325,7 @@
               <li>• Exclusivitate (+300 lei)</li>
             </ul>
           </div>
-          <div class="panel p-6">
-            <div class="text-sm uppercase tracking-wider text-slate-600">Complet</div>
-            <div class="mt-2 text-3xl font-extrabold">95 lei + opțiuni</div>
-            <p class="mt-2 text-slate-700">2–3 minute, versuri complete, 2 revizii. Posibil stems la cerere.</p>
-          </div>
+          <div class="panel p-6"><div class="text-sm uppercase tracking-wider text-slate-600">Complet</div><div class="mt-2 text-3xl font-extrabold">95 lei + opțiuni</div><p class="mt-2 text-slate-700">2–3 minute, versuri complete, 2 revizii. Posibil stems la cerere.</p></div>
         </div>
       </div>
     </div>
@@ -440,6 +370,7 @@
         <a class="btn btn-primary mt-2" href="https://wa.me/40757641284" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
       </div>
     </div>
+    <p class="sr-only">Melodii personalizate, melodie cadou, cântec la comandă pentru aniversări, onomastici, cereri în căsătorie, familie și prieteni. Livrare rapidă, plată Card/PayPal/Revolut.</p>
     <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Unica. Toate drepturile rezervate.</div>
   </footer>
 
