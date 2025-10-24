@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Melodia Unica — 100% personalisierte Lieder</title>
+  <meta name="description" content="Bestelle online ein personalisiertes Lied für Geburtstage, Jubiläen, Hochzeiten oder besondere Überraschungen. Schnelle Zahlung (Karte/PayPal/Revolut). Optional 48h-Lieferung." />
+  <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
+
+  <!-- SEO -->
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://melodiaunica.ro/de.html">
+  <link rel="alternate" hreflang="ro" href="https://melodiaunica.ro/">
+  <link rel="alternate" hreflang="en" href="https://melodiaunica.ro/en.html">
+  <link rel="alternate" hreflang="de" href="https://melodiaunica.ro/de.html">
+  <meta name="keywords" content="personalisierte Lieder, individuelles Lied, Musikgeschenk, Lied für Jubiläum, Hochzeitslied, dein Lied, personalisiertes Lied Rumänien">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Melodia Unica">
+  <meta property="og:url" content="https://melodiaunica.ro/de.html">
+  <meta property="og:title" content="Melodia Unica — 100% personalisierte Lieder">
+  <meta property="og:description" content="Erzähl mir deine Geschichte – ich verwandle sie in Musik. Perfekt für Jubiläen, Namenstage, Hochzeiten, Anträge, Insider-Witze und Video-Kampagnen.">
+  <meta property="og:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Melodia Unica — 100% personalisierte Lieder">
+  <meta name="twitter:description" content="Bestelle ein Lied, das genau zu deiner Geschichte passt. Schnelle Lieferung.">
+  <meta name="twitter:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
+
+  <!-- JSON-LD (unverändert) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Melodia Unica",
+    "url": "https://melodiaunica.ro/",
+    "logo": "https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png",
+    "sameAs": [
+      "https://www.facebook.com/melodiaunica",
+      "https://www.instagram.com/melodiaunica",
+      "https://www.tiktok.com/@melodiaunica",
+      "https://wa.me/40757641284"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"Melodia Unica",
+    "url":"https://melodiaunica.ro/",
+    "potentialAction":{
+      "@type":"SearchAction",
+      "target":"https://melodiaunica.ro/?q={search_term_string}",
+      "query-input":"required name=search_term_string"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --panel-bg: rgba(255,255,255,.42);
+      --panel-brd: rgba(0,0,0,.06);
+      --scrim: rgba(255,255,255,.08);
+      --text-stroke: 1px rgba(255,255,255,.35);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
+    .container { max-width: 1120px; }
+
+    #bgshow { position:fixed; inset:0; z-index:-2; }
+    #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
+    #bgshow .slide.active { opacity:1; }
+    #bg-scrim { position:fixed; inset:0; z-index:-1; background: var(--scrim); backdrop-filter: saturate(120%) blur(1px); }
+
+    .panel { background: var(--panel-bg); border:1px solid var(--panel-brd); border-radius: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.10); backdrop-filter: blur(4px); }
+    h1, h2, h3 { -webkit-text-stroke: var(--text-stroke); text-shadow: 0 2px 8px rgba(255,255,255,.25); }
+    .hdr { background: rgba(255,255,255,.75); backdrop-filter: blur(8px); border-bottom: 1px solid var(--panel-brd); }
+    .btn { border-radius: 16px; padding: 12px 18px; font-weight:600; display:inline-flex; align-items:center; gap:.5rem; }
+    .btn-primary { background:#6d28d9; color:white; box-shadow: 0 8px 20px rgba(109,40,217,.25); }
+    .btn-primary:hover { opacity:.95; }
+    .btn-ghost { border:1px solid var(--panel-brd); background: rgba(255,255,255,.6); }
+    .field { background: rgba(255,255,255,.9); border:1px solid var(--panel-brd); border-radius:14px; padding:12px 14px; }
+
+    .logo-crest { height: 80px; width:auto; object-fit:contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
+    .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
+
+    audio.sample { width: clamp(220px, 52vw, 360px); }
+    @media (min-width: 768px){ audio.sample { width: 420px; } }
+    @media (max-width: 480px){
+      .panel .flex.items-center.justify-between { flex-wrap: wrap; gap: 12px; }
+      audio.sample { width: 100% !important; max-width: 100%; }
+    }
+    /* Kontakt mobil fix */
+    @media (max-width: 480px){
+      #contact .panel { padding-left: 14px; padding-right: 14px; }
+      #contact a { word-break: break-word; overflow-wrap: anywhere; }
+      #contact .btn-ghost { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- SLIDESHOW -->
+  <div id="bgshow" aria-hidden="true">
+    <div class="slide active" style="background-image:url('https://images.pexels.com/photos/713056/pexels-photo-713056.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/210922/pexels-photo-210922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/995301/pexels-photo-995301.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164745/pexels-photo-164745.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/114820/pexels-photo-114820.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/164936/pexels-photo-164936.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+    <div class="slide" style="background-image:url('https://images.pexels.com/photos/1642772/pexels-photo-1642772.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');"></div>
+  </div>
+  <div id="bg-scrim" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="hdr sticky top-0 z-40">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+        <img id="site-logo" src="file_00000000fc9c62468d8c49611871c2d4.png" alt="Melodia Unica" class="logo-crest" />
+        <span>Melodia Unica</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-2">
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
+        <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#order" class="btn btn-primary">Bestellen</a>
+        <a href="#plata" class="btn btn-ghost">Zahlung</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="py-14 md:py-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-8 md:p-10">
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">Individuell komponierte Lieder<br><span class="text-violet-700">100% personalisiert</span></h1>
+        <p class="mt-4 text-lg text-slate-700">Erzähl mir deine Geschichte – ich mache Musik daraus. Perfekt für Geburtstage, Jubiläen, Hochzeiten, Heiratsanträge, Insider-Witze und Video-Kampagnen.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#order" class="btn btn-primary">Jetzt bestellen</a>
+          <a href="#mostre" class="btn btn-ghost">Proben anhören</a>
+          <a href="#plata" class="btn btn-ghost">Zur Zahlung</a>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2 md:hidden">
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER + PAYMENT -->
+  <section id="order" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
+      <div class="panel p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl font-extrabold">Details für dein Lied</h2>
+        <p class="text-slate-600 text-sm mt-1">Fülle die Felder aus. Die Summe wird automatisch berechnet.</p>
+
+        <form id="form-ro" action="https://formspree.io/f/mzzjqjqe" method="POST" class="mt-5 grid gap-4">
+          <input type="hidden" name="site" value="DE" />
+          <input type="hidden" id="total_hidden" name="total_calculat_lei" value="95" />
+          <input type="hidden" id="opts_hidden" name="optiuni_selectate" value="" />
+          <input type="hidden" id="ship_hidden" name="expediere" value="Standard (3–5 zile)" />
+
+          <label class="grid gap-1">
+            <span class="text-sm text-slate-700">Vollständiger Name*</span>
+            <input required name="nume_complet" class="field" placeholder="z. B. Andrei Popescu" />
+          </label>
+
+          <label class="grid gap-1">
+            <span class="text-sm text-slate-700">E-Mail-Adresse*</span>
+            <input required type="email" name="email_client" class="field" placeholder="name@beispiel.com" />
+          </label>
+
+          <label class="grid gap-1">
+            <span class="text-sm text-slate-700">Gewünschtes Genre*</span>
+            <select required name="gen" class="field">
+              <option value="">Genre wählen</option>
+              <option>Pop</option><option>Moderne Manele</option><option>Trap</option>
+              <option>Ballade</option><option>Folk</option><option>Ambient/Meditation</option>
+              <option>Traditionell</option><option>Party</option><option>Namenstag</option>
+              <option>Hip-Hop</option><option>Rock</option><option>Techno</option><option>House</option>
+            </select>
+          </label>
+
+          <label class="grid gap-1">
+            <span class="text-sm text-slate-700">Deine Geschichte / Hinweise*</span>
+            <textarea required name="mesaj" rows="5" class="field" placeholder="Für wen ist das Lied, Anlass, Stimmung, Insider-Witze, Stichwörter…"></textarea>
+          </label>
+
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="chip">
+              <span>Erweitertes Mix & Master</span>
+              <span class="flex items-center gap-2 text-sm text-slate-600">+80 lei <input type="checkbox" class="opt" data-name="Mix&Master" value="80"></span>
+            </label>
+            <label class="chip">
+              <span>Lyrics-Video in 4K</span>
+              <span class="flex items-center gap-2 text-sm text-slate-600">+70 lei <input type="checkbox" class="opt" data-name="LyricsVideo" value="70"></span>
+            </label>
+            <label class="chip">
+              <span>Kommerzielle Lizenz</span>
+              <span class="flex items-center gap-2 text-sm text-slate-600">+150 lei <input type="checkbox" class="opt" data-name="LicentaComerciala" value="150"></span>
+            </label>
+            <label class="chip">
+              <span>Exklusivität</span>
+              <span class="flex items-center gap-2 text-sm text-slate-600">+300 lei <input type="checkbox" class="opt" data-name="Exclusivitate" value="300"></span>
+            </label>
+          </div>
+
+          <div class="grid gap-2">
+            <div class="text-sm text-slate-700 font-semibold">Lieferzeit</div>
+            <label class="chip"><span>Standard (3–5 Tage)</span><span class="text-sm text-slate-600">+0 lei <input type="radio" name="ship" class="ship" data-name="Standard (3–5 zile)" value="0" checked></span></label>
+            <label class="chip"><span>Express (48h)</span><span class="text-sm text-slate-600">+50 lei <input type="radio" name="ship" class="ship" data-name="Express (48h)" value="50"></span></label>
+            <label class="chip"><span>Ultra (24h)</span><span class="text-sm text-slate-600">+120 lei <input type="radio" name="ship" class="ship" data-name="Ultra (24h)" value="120"></span></label>
+          </div>
+
+          <label class="inline-flex items-start gap-3 text-sm text-slate-700">
+            <input required type="checkbox" class="mt-1 accent-violet-600" name="gdpr" />
+            Ich bin einverstanden, dass meine Daten zur Erstellung des Liedes verwendet werden (DSGVO).
+          </label>
+
+          <div class="grid gap-3 rounded-2xl border bg-white/80 p-4">
+            <div class="text-sm text-slate-600">Geschätzte Gesamtsumme</div>
+            <div class="text-4xl font-extrabold"><span id="calc-total">95</span> lei</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
+              <a id="btn-stripe" href="https://buy.stripe.com/00waEX7Shc1UbexdiTdjO00" target="_blank" class="btn btn-ghost justify-center">💳 Karte (Stripe)</a>
+              <a id="btn-paypal" href="https://paypal.me/Serviciidigitale/95" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
+              <a id="btn-revolut" href="https://revolut.me/razvan3ltl/95" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
+            </div>
+            <p class="text-xs text-slate-500">* Stripe ist LIVE. PayPal/Revolut übernehmen den berechneten Betrag.</p>
+          </div>
+
+          <div class="flex flex-wrap gap-3 items-center">
+            <button type="submit" class="btn btn-primary">Bestellung senden</button>
+            <div id="ro-status" class="text-sm text-slate-600 hidden">Details werden gesendet…</div>
+          </div>
+        </form>
+      </div>
+
+      <div id="plata" class="panel p-6 md:p-8">
+        <h3 class="text-2xl font-extrabold">Zahlung</h3>
+        <p class="mt-1 text-sm text-slate-700">Wähle deine bevorzugte Methode (offiziell):</p>
+        <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <a href="https://buy.stripe.com/00waEX7Shc1UbexdiTdjO00" target="_blank" class="btn btn-ghost justify-center">💳 Karte (Stripe)</a>
+          <a href="https://paypal.me/Serviciidigitale" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
+          <a href="https://revolut.me/razvan3ltl" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">* Stripe ist LIVE. PayPal/Revolut nutzen die Summe oben.</p>
+
+        <div class="mt-6">
+          <div class="text-sm text-slate-600">Schnellkontakt</div>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/40757641284">WhatsApp</a>
+            <a class="btn btn-ghost" target="_blank" rel="noopener" href="mailto:melodiipersonalizate.official@gmail.com">E-Mail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIO-PROBEN -->
+  <section id="mostre" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Audio-Proben</h2>
+        <p class="text-slate-700 text-sm mt-2">Drücke ▶︎, um direkt auf der Seite zu hören. Es spielt immer nur ein Track gleichzeitig.</p>
+        <div class="mt-6 grid gap-6">
+          <!-- 1 -->
+          <div class="panel p-4 md:p-6">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="font-semibold">Ballade für Raluca — tief romantisch</div>
+                <div class="text-sm text-slate-600">Emotional, filmisch</div>
+              </div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
+                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/BLUEPRINT%20AUDIO%20%E2%80%94%20%E2%80%9ERaluca%E2%80%9D%20%E2%80%94%20BALAD%C4%82%20CINE.mp3"></audio>
+            </div>
+          </div>
+          <!-- 2 -->
+          <div class="panel p-4 md:p-6">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="font-semibold">Prost, Bruder — positiv, fröhlich</div>
+                <div class="text-sm text-slate-600">Freundliche Stimmung</div>
+              </div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
+                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Florin%E2%80%A6%20%C8%99i%20David%E2%80%A6%20voi%20sunte%C8%9Bi%20lumea%20mea%E2%80%A6.mp3"></audio>
+            </div>
+          </div>
+          <!-- 3 -->
+          <div class="panel p-4 md:p-6">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="font-semibold">Lieber Mensch — motivierend</div>
+                <div class="text-sm text-slate-600">Starke Botschaft</div>
+              </div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
+                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Om%20drag%E2%80%A6%20ce%20cuv%C3%A2nt%20mare_%20OM.%20(1).mp3"></audio>
+            </div>
+          </div>
+          <!-- 4 -->
+          <div class="panel p-4 md:p-6">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="font-semibold">Only you, Raluca — modern romantisch</div>
+                <div class="text-sm text-slate-600">Deklarativ, Pop</div>
+              </div>
+              <audio class="sample" controls preload="none" controlslist="nodownload noplaybackrate"
+                     src="https://github.com/melodiipersonalizateofficial-stack/melodia-ta-ro/raw/refs/heads/main/Yeah%E2%80%A6%20Raluca%E2%80%A6%20only%20you%E2%80%A6%20sunt%20al%20t%C4%83u%20pe%20v.mp3"></audio>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimoniale" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Was Kundinnen & Kunden sagen</h2>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <article class="panel p-6">
+            <div class="text-lg font-semibold">Teodora</div>
+            <p class="mt-3 text-slate-700">„Das Lied hat mich zum Weinen gebracht und die Texte haben mein Innerstes berührt. Ein sehr emotionales, ehrliches Stück, das mich jeden wertvollen Moment noch einmal erleben ließ.“</p>
+            <div class="mt-3 text-sm text-slate-600">— Kunde</div>
+          </article>
+          <article class="panel p-6">
+            <div class="text-lg font-semibold">Raluca</div>
+            <p class="mt-3 text-slate-700">„Ich war verblüfft, als ich das Lied hörte. Die Texte haben mich tief berührt, und der Refrain blieb lange in meinem Kopf. Ein wunderbares, warmes und sehr schönes Stück.“</p>
+            <div class="mt-3 text-sm text-slate-600">— Kunde</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTRA INFO -->
+  <section id="info-plus" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h3 class="text-2xl md:text-3xl font-extrabold">Warum Melodia Unica?</h3>
+        <ul class="mt-4 space-y-2 text-slate-700">
+          <li><b>Emotionales, einzigartiges Geschenk — unvergesslich</b></li>
+          <li><b>Speziell für dich gemacht</b> — 100% personalisierte Geschichte</li>
+          <li><b>Menschliche Stimme + echte Emotion</b> — man spürt das Herzblut</li>
+          <li><b>Perfekt als Geschenk</b> — Partner, Kinder, Eltern, Freunde, Heiratsanträge</li>
+          <li><b>Schnelle Lieferung</b> — Express 48h oder Ultra 24h</li>
+        </ul>
+
+        <h4 class="mt-8 text-xl font-bold">Anlässe, die Freudentränen bringen</h4>
+        <ul class="mt-3 space-y-1 text-slate-700">
+          <li>• Liebeserklärung — unvergessliche romantische Überraschung</li>
+          <li>• Jubiläen & Namenstage — mit euren Namen und eurer Geschichte</li>
+          <li>• Heiratsantrag — filmischer Moment</li>
+          <li>• Eltern & Kinder — Dankbarkeit, Emotion, Bindungen fürs Leben</li>
+          <li>• Bester Freund / Beste Freundin — Insider-Witze als Refrain</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREISE -->
+  <section id="pricing" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Preise — Rumänien</h2>
+        <p class="text-slate-700 text-sm mt-2">Grundpreis <b>95 lei</b> / Lied + Optionen (Express, kommerziell, Exklusivität).</p>
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+          <div class="panel p-6">
+            <div class="text-sm uppercase tracking-wider text-slate-600">Basis</div>
+            <div class="mt-2 text-3xl font-extrabold">95 lei</div>
+            <p class="mt-2 text-slate-700">Personalisiertes Lied ~60–120 Sek. 1 Korrektur. Lieferung 3–5 Tage.</p>
+          </div>
+          <div class="panel p-6 border-2 border-violet-300 bg-white/85">
+            <div class="text-sm uppercase tracking-wider text-violet-700">Beliebte Optionen</div>
+            <ul class="mt-4 space-y-2 text-sm text-slate-800">
+              <li>• Express 48h (+50 lei)</li>
+              <li>• Erweitertes Mix & Master (+80 lei)</li>
+              <li>• Lyrics-Video in 4K (+70 lei)</li>
+              <li>• Kommerzielle Lizenz (+150 lei)</li>
+              <li>• Exklusivität (+300 lei)</li>
+            </ul>
+          </div>
+          <div class="panel p-6">
+            <div class="text-sm uppercase tracking-wider text-slate-600">Komplett</div>
+            <div class="mt-2 text-3xl font-extrabold">95 lei + Optionen</div>
+            <p class="mt-2 text-slate-700">2–3 Minuten, vollständiger Text, 2 Korrekturen. Stems auf Anfrage möglich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="contact" class="pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Kontakt</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-6">
+          <div class="panel p-6"><div class="text-sm text-slate-600">E-Mail</div><a class="text-lg font-semibold hover:underline" href="mailto:melodiipersonalizate.official@gmail.com">melodiipersonalizate.official@gmail.com</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">WhatsApp</div><a class="text-lg font-semibold hover:underline" target="_blank" href="https://wa.me/40757641284">+40 757 641 284</a></div>
+          <div class="panel p-6"><div class="text-sm text-slate-600">Social</div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.facebook.com/melodiaunica">Facebook</a>
+              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.tiktok.com/@melodiaunica">TikTok</a>
+              <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/melodiaunica">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="hdr border-t">
+    <div class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm text-slate-700">
+      <div>
+        <div class="font-semibold text-slate-900">🎵 Melodia Unica</div>
+        <p class="mt-2">Bestelle personalisierte Lieder für jeden Anlass. Schnelle Lieferung, sichere Zahlungen.</p>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-900">Rechtliches</div>
+        <ul class="mt-2 space-y-2">
+          <li><a href="#" class="hover:underline">Allgemeine Geschäftsbedingungen</a></li>
+          <li><a href="#" class="hover:underline">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold text-slate-900">Schnellbutton</div>
+        <a class="btn btn-primary mt-2" href="https://wa.me/40757641284" target="_blank" rel="noopener">Auf WhatsApp schreiben</a>
+      </div>
+    </div>
+    <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Unica. Alle Rechte vorbehalten.</div>
+  </footer>
+
+  <!-- Sprachumschalter -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <div class="panel p-2 flex items-center gap-1">
+      <a href="index.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">RO</a>
+      <span class="text-slate-500">|</span>
+      <a href="en.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">EN</a>
+      <span class="text-slate-500">|</span>
+      <a href="de.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">DE</a>
+    </div>
+  </div>
+
+  <!-- JS (gleich wie RO) -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function(){
+      const slides = Array.from(document.querySelectorAll('#bgshow .slide'));
+      if(!slides.length) return;
+      let i = 0;
+      setInterval(()=>{
+        slides[i].classList.remove('active');
+        i = (i+1) % slides.length;
+        slides[i].classList.add('active');
+      }, 12000);
+    })();
+
+    (function () {
+      const players = Array.from(document.querySelectorAll('audio.sample'));
+      players.forEach(p => {
+        p.addEventListener('play', () => {
+          players.forEach(o => { if (o !== p) o.pause(); });
+        });
+      });
+    })();
+
+    (function(){
+      const img = document.getElementById('site-logo');
+      if(!img) return;
+      img.addEventListener('error', ()=>{ img.style.display='none'; }, { once:true });
+    })();
+
+    (function(){
+      const BASE = 95;
+      const totalEl = document.getElementById('calc-total');
+      const form = document.getElementById('form-ro');
+      const opts = Array.from(document.querySelectorAll('.opt'));
+      const ships = Array.from(document.querySelectorAll('.ship'));
+      const btnPayPal = document.getElementById('btn-paypal');
+      const btnRevolut = document.getElementById('btn-revolut');
+      const hiddenTotal = document.getElementById('total_hidden');
+      const hiddenOpts  = document.getElementById('opts_hidden');
+      const hiddenShip  = document.getElementById('ship_hidden');
+
+      function calc(){
+        let total = BASE;
+        const chosen = [];
+        opts.forEach(ch => {
+          if(ch.checked){ total += Number(ch.value||0); chosen.push(ch.dataset.name); }
+        });
+        let shipName = 'Standard (3–5 zile)', shipCost = 0;
+        ships.forEach(r=>{
+          if(r.checked){ shipName = r.dataset.name; shipCost = Number(r.value||0); }
+        });
+        total += shipCost;
+
+        if(totalEl) totalEl.textContent = total;
+        if(hiddenTotal) hiddenTotal.value = total;
+        if(hiddenOpts) hiddenOpts.value  = chosen.join(', ');
+        if(hiddenShip) hiddenShip.value  = shipName;
+
+        if(btnPayPal) btnPayPal.href = `https://paypal.me/Serviciidigitale/${total}`;
+        if(btnRevolut) btnRevolut.href = `https://revolut.me/razvan3ltl/${total}`;
+      }
+      if(opts.length) opts.forEach(ch => ch.addEventListener('change', calc));
+      if(ships.length) ships.forEach(r => r.addEventListener('change', calc));
+      calc();
+
+      const status = document.getElementById('ro-status');
+      const pay = document.getElementById('plata');
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          status.classList.remove('hidden');
+          status.textContent = 'Details werden gesendet…';
+          try{
+            const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+            if(res.ok){
+              status.textContent = 'Fertig! Details gesendet. Du kannst unten bezahlen ↓';
+              pay.scrollIntoView({behavior:'smooth'});
+            } else {
+              status.textContent = 'Ein Fehler ist aufgetreten. Versuche es erneut oder schreibe auf WhatsApp.';
+            }
+          } catch(err){ status.textContent = 'Netzwerkfehler. Bitte erneut versuchen.'; }
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
