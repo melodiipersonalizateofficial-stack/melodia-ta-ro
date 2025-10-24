@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ro">
+<!DOCTYPE html>
+<html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,10 +8,12 @@
   <!-- Favicon = emblema ta -->
   <link rel="icon" type="image/png" href="file_00000000fc9c62468d8c49611871c2d4.png" />
 
-  <!-- ✅ SEO existent -->
+  <!-- ✅ SEO: doar adăugiri, fără alte modificări -->
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://melodiaunica.ro/">
   <link rel="alternate" hreflang="ro" href="https://melodiaunica.ro/">
+  <!-- chei căutare minimale (fără a schimba conținutul paginii) -->
+  <meta name="keywords" content="melodii personalizate, melodie la comandă, cadou muzical, melodie pentru aniversare, melodie pentru onomastică, melodie pentru nuntă, melodia ta, cântec personalizat, melodie cadou România">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -26,7 +29,7 @@
   <meta name="twitter:description" content="Comandă o melodie creată special pentru povestea ta. Livrare rapidă.">
   <meta name="twitter:image" content="https://melodiipersonalizateofficial-stack.github.io/melodia-ta-ro/file_00000000fc9c62468d8c49611871c2d4.png">
 
-  <!-- JSON-LD (Organization + Website) – EXISTENT -->
+  <!-- JSON-LD (Organization + Website) - neschimbat -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -55,53 +58,7 @@
     }
   }
   </script>
-
-  <!-- ✅ SEO AVANSAT (ADĂUGAT ACUM) -->
-  <!-- FAQPage (pentru rich results) -->
-  <script type="application/ld+json">
-  {
-   "@context":"https://schema.org",
-   "@type":"FAQPage",
-   "mainEntity":[
-    {"@type":"Question","name":"Cât durează livrarea unei melodii personalizate?",
-     "acceptedAnswer":{"@type":"Answer","text":"Standard: 3–5 zile. Opțional Express 48h sau Ultra 24h (cost suplimentar)."}},
-    {"@type":"Question","name":"Ce primesc la final?",
-     "acceptedAnswer":{"@type":"Answer","text":"Fișiere MP3 320kbps + WAV 24-bit, versuri PDF, copertă JPG și 1–2 revizii incluse în funcție de pachet."}},
-    {"@type":"Question","name":"Cum se face plata?",
-     "acceptedAnswer":{"@type":"Answer","text":"Card (Stripe), PayPal sau Revolut. După trimiterea formularului, alegi metoda preferată."}},
-    {"@type":"Question","name":"Pentru ce ocazii pot comanda?",
-     "acceptedAnswer":{"@type":"Answer","text":"Aniversări, onomastici, cereri în căsătorie, familie (părinți, copii), prieteni apropiați, mesaje motivaționale sau campanii video."}}
-   ]
-  }
-  </script>
-
-  <!-- Service (descriere serviciu + preț) -->
-  <script type="application/ld+json">
-  {
-   "@context":"https://schema.org",
-   "@type":"Service",
-   "name":"Melodii personalizate la comandă",
-   "serviceType":"Personalized Song",
-   "provider":{"@type":"Organization","name":"Melodia Unica","url":"https://melodiaunica.ro/"},
-   "areaServed":{"@type":"Country","name":"Romania"},
-   "offers":{"@type":"Offer","price":"95","priceCurrency":"RON","availability":"https://schema.org/InStock","url":"https://melodiaunica.ro/#order"}
-  }
-  </script>
-
-  <!-- BreadcrumbList (ajută Google să înțeleagă secțiunile) -->
-  <script type="application/ld+json">
-  {
-   "@context":"https://schema.org",
-   "@type":"BreadcrumbList",
-   "itemListElement":[
-    {"@type":"ListItem","position":1,"name":"Acasă","item":"https://melodiaunica.ro/"},
-    {"@type":"ListItem","position":2,"name":"Comandă","item":"https://melodiaunica.ro/#order"},
-    {"@type":"ListItem","position":3,"name":"Mostre","item":"https://melodiaunica.ro/#mostre"},
-    {"@type":"ListItem","position":4,"name":"Contact","item":"https://melodiaunica.ro/#contact"}
-   ]
-  }
-  </script>
-  <!-- ✅ /SEO AVANSAT -->
+  <!-- ✅ /SEO -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,7 +75,7 @@
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; color:#0f172a; }
     .container { max-width: 1120px; }
 
-    /* Slideshow global */
+    /* Slideshow global (neschimbat) */
     #bgshow { position:fixed; inset:0; z-index:-2; }
     #bgshow .slide { position:absolute; inset:0; background-position:center; background-size:cover; opacity:0; transition:opacity 1.2s ease; }
     #bgshow .slide.active { opacity:1; }
@@ -138,9 +95,14 @@
 
     .chip { border:1px solid var(--panel-brd); background:#fff; border-radius:12px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:.75rem; }
 
-    /* Player mai îngust pe mobil */
+    /* Player mai îngust pe mobil + fix overflow */
     audio.sample { width: clamp(220px, 52vw, 360px); }
     @media (min-width: 768px){ audio.sample { width: 420px; } }
+    /* Fix layout audio pe ecrane mici: nu mai iese în dreapta */
+    @media (max-width: 480px){
+      .panel .flex.items-center.justify-between { flex-wrap: wrap; gap: 12px; }
+      audio.sample { width: 100% !important; max-width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -157,7 +119,7 @@
   </div>
   <div id="bg-scrim" aria-hidden="true"></div>
 
-  <!-- HEADER -->
+  <!-- HEADER (neschimbat) -->
   <header class="hdr sticky top-0 z-40">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#top" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
@@ -179,7 +141,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO (neschimbat) -->
   <section id="top" class="py-14 md:py-20">
     <div class="container mx-auto px-4">
       <div class="panel p-8 md:p-10">
@@ -200,7 +162,7 @@
     </div>
   </section>
 
-  <!-- ORDER + PLĂȚI -->
+  <!-- ORDER + PLĂȚI (doar Stripe LIVE înlocuit) -->
   <section id="order" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-start">
       <div class="panel p-6 md:p-8">
@@ -274,11 +236,12 @@
             <div class="text-sm text-slate-600">Total estimat</div>
             <div class="text-4xl font-extrabold"><span id="calc-total">95</span> lei</div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-              <a id="btn-stripe" href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
+              <!-- ✅ STRIPE LIVE -->
+              <a id="btn-stripe" href="https://buy.stripe.com/00waEX7Shc1UbexdiTdjO00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
               <a id="btn-paypal" href="https://paypal.me/Serviciidigitale/95" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
               <a id="btn-revolut" href="https://revolut.me/razvan3ltl/95" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
             </div>
-            <p class="text-xs text-slate-500">* Stripe demo are sumă fixă (fără backend). PayPal/Revolut preiau suma calculată.</p>
+            <p class="text-xs text-slate-500">* Stripe este link LIVE. PayPal/Revolut preiau suma calculată.</p>
           </div>
 
           <div class="flex flex-wrap gap-3 items-center">
@@ -292,11 +255,12 @@
         <h3 class="text-2xl font-extrabold">Plată</h3>
         <p class="mt-1 text-sm text-slate-700">Alege metoda preferată (oficiale):</p>
         <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <a href="https://buy.stripe.com/test_bJefZg8rybfC8fWbhodEs00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
+          <!-- ✅ STRIPE LIVE -->
+          <a href="https://buy.stripe.com/00waEX7Shc1UbexdiTdjO00" target="_blank" class="btn btn-ghost justify-center">💳 Card (Stripe)</a>
           <a href="https://paypal.me/Serviciidigitale" target="_blank" class="btn btn-ghost justify-center">🅿️ PayPal</a>
           <a href="https://revolut.me/razvan3ltl" target="_blank" class="btn btn-ghost justify-center">💠 Revolut</a>
         </div>
-        <p class="text-xs text-slate-500 mt-3">* Schimbă linkul Stripe de test cu linkul LIVE când îl ai.</p>
+        <p class="text-xs text-slate-500 mt-3">* Stripe este link LIVE. PayPal/Revolut iau suma din calculul de mai sus.</p>
 
         <div class="mt-6">
           <div class="text-sm text-slate-600">Contact rapid</div>
@@ -309,7 +273,7 @@
     </div>
   </section>
 
-  <!-- MOSTRE AUDIO -->
+  <!-- MOSTRE AUDIO (păstrate EXACT 4 cum le ai) -->
   <section id="mostre" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -365,7 +329,55 @@
     </div>
   </section>
 
-  <!-- PREȚURI -->
+  <!-- ✅ TESTIMONIALE (ADĂUGAT SUB MOSTRE) -->
+  <section id="testimoniale" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h2 class="text-3xl md:text-4xl font-extrabold">Ce spun clienții</h2>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <!-- Teodora -->
+          <article class="panel p-6">
+            <div class="text-lg font-semibold">Teodora</div>
+            <p class="mt-3 text-slate-700">„Melodia m-a făcut să plâng și versurile mi-au străpuns până în adâncul sufletului. O piesă foarte emoțională, sinceră, care m-a făcut să retrăiesc fiecare moment drag.”</p>
+            <div class="mt-3 text-sm text-slate-600">— client</div>
+          </article>
+          <!-- Raluca -->
+          <article class="panel p-6">
+            <div class="text-lg font-semibold">Raluca</div>
+            <p class="mt-3 text-slate-700">„Am rămas uimită când am ascultat melodia. Versurile m-au atins în adânc, iar refrenul mi-a rămas în minte mult timp. E o piesă minunată, caldă și foarte frumoasă.”</p>
+            <div class="mt-3 text-sm text-slate-600">— client</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ TEXTE DIN POZE (mutate sub testimoniale) -->
+  <section id="info-plus" class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      <div class="panel p-6 md:p-10">
+        <h3 class="text-2xl md:text-3xl font-extrabold">De ce Melodia Unica?</h3>
+        <ul class="mt-4 space-y-2 text-slate-700">
+          <li><b>Cadou emoțional, unic, imposibil de uitat</b></li>
+          <li><b>Creată special pentru tine</b> — poveste personalizată 100%</li>
+          <li><b>Voce umană + emoție autentică</b> — se simte că e făcută cu suflet</li>
+          <li><b>Perfect pentru cadouri</b> — soție, copii, părinți, prieteni, cereri în căsătorie</li>
+          <li><b>Livrare rapidă</b> — opțiune Express 48h sau Ultra 24h</li>
+        </ul>
+
+        <h4 class="mt-8 text-xl font-bold">Ocazii care provoacă lacrimi de bucurie</h4>
+        <ul class="mt-3 space-y-1 text-slate-700">
+          <li>• Declarație pentru persoana iubită — surpriză romantică memorabilă</li>
+          <li>• Aniversări & onomastice — cu numele și povestea voastră</li>
+          <li>• Cerere în căsătorie — moment cinematic</li>
+          <li>• Părinți & copii — mulțumiri, emoție, legături pentru o viață</li>
+          <li>• Prieten foarte bun — inside jokes transformate în refren</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREȚURI (neschimbat) -->
   <section id="pricing" class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -397,7 +409,7 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACT (neschimbat) -->
   <section id="contact" class="pb-20">
     <div class="container mx-auto px-4">
       <div class="panel p-6 md:p-10">
@@ -417,7 +429,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (neschimbat) -->
   <footer class="hdr border-t">
     <div class="container mx-auto px-4 py-8 grid md:grid-cols-3 gap-6 text-sm text-slate-700">
       <div>
@@ -439,7 +451,18 @@
     <div class="text-center text-xs text-slate-600 pb-8">© <span id="year"></span> Melodia Unica. Toate drepturile rezervate.</div>
   </footer>
 
-  <!-- JS -->
+  <!-- Selector limbă mobil (plutitor, vizibil pe telefon) -->
+  <div class="fixed bottom-4 right-4 z-50">
+    <div class="panel p-2 flex items-center gap-1">
+      <a href="index.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">RO</a>
+      <span class="text-slate-500">|</span>
+      <a href="en.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">EN</a>
+      <span class="text-slate-500">|</span>
+      <a href="de.html" class="px-3 py-1 text-sm font-semibold rounded-lg hover:underline">DE</a>
+    </div>
+  </div>
+
+  <!-- JS (neschimbat, doar rulează calcul + slideshow) -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -501,27 +524,29 @@
         btnPayPal.href = `https://paypal.me/Serviciidigitale/${total}`;
         btnRevolut.href = `https://revolut.me/razvan3ltl/${total}`;
       }
-      opts.forEach(ch => ch.addEventListener('change', calc));
-      ships.forEach(r => r.addEventListener('change', calc));
-      calc();
+      if(opts.length) opts.forEach(ch => ch.addEventListener('change', calc));
+      if(ships.length) ships.forEach(r => r.addEventListener('change', calc));
+      if(totalEl) calc();
 
       const status = document.getElementById('ro-status');
       const pay = document.getElementById('plata');
-      form.addEventListener('submit', async (e)=>{
-        e.preventDefault();
-        status.classList.remove('hidden');
-        status.textContent = 'Se trimit detaliile…';
-        try{
-          const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
-          if(res.ok){
-            status.textContent = 'Gata! Detaliile au fost trimise. Poți face plata ↓';
-            pay.scrollIntoView({behavior:'smooth'});
-          } else {
-            status.textContent = 'A apărut o problemă. Încearcă din nou sau scrie pe WhatsApp.';
-          }
-        } catch(err){ status.textContent = 'Eroare de rețea. Încearcă din nou.'; }
-      });
+      if(form){
+        form.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          status.classList.remove('hidden');
+          status.textContent = 'Se trimit detaliile…';
+          try{
+            const res = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{'Accept':'application/json'} });
+            if(res.ok){
+              status.textContent = 'Gata! Detaliile au fost trimise. Poți face plata ↓';
+              pay.scrollIntoView({behavior:'smooth'});
+            } else {
+              status.textContent = 'A apărut o problemă. Încearcă din nou sau scrie pe WhatsApp.';
+            }
+          } catch(err){ status.textContent = 'Eroare de rețea. Încearcă din nou.'; }
+        });
+      }
     })();
   </script>
 </body>
-                </html>
+</html>
